@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Active Developer Badge</title>
+
+<style>
+  /* RESET */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ========= MATCH MAIN SITE BACKGROUND EXACTLY ========= */
+  body {
+    margin: 0;
+    padding: 40px 20px;
+
+    --bg: #252525;
+    background-color: var(--bg);
+
+    /* SAME DOT PATTERN AS MAIN SITE */
+    background-image: radial-gradient(
+      rgba(255,255,255,0.045) 1px,
+      transparent 1px
+    );
+    background-size: 26px 26px;
+
+    font-family: "Segoe UI", "Courier New", monospace;
+    color: #e0e0e0;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  header h1 {
+    font-size: 2.7rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 12px rgba(0,0,0,0.7);
+  }
+
+  header p {
+    font-size: 1rem;
+    color: #b5b5b5;
+    margin-top: 6px;
+  }
+
+  /* INSTRUCTION BOX MATCHES DARK CARD AESTHETIC */
+  .instruction-box {
+    background: #1a1a1a;
+    border: 2px solid #444;
+    border-radius: 10px;
+    padding: 25px;
+    height: 480px;
+    overflow-y: auto;
+    color: #e4e4e4;
+
+    box-shadow:
+      0 14px 40px rgba(0,0,0,0.75),
+      inset 0 0 0 1px rgba(255,255,255,0.03);
+  }
+
+  .instruction-box a {
+    color: #76b2ff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .instruction-box a:hover {
+    text-decoration: underline;
+  }
+
+  ol { margin-left: 1.2em; }
+  li { margin-bottom: 14px; }
+
+  ul {
+    margin-top: 6px;
+    margin-left: 1.5em;
+    list-style-type: disc;
+    color: #cfcfd4;
+  }
+
+  /* NOTE STYLING */
+  .note {
+    background: rgba(255,207,120,0.1);
+    border: 1px solid rgba(255,207,120,0.45);
+    color: #ffdf7f;
+    padding: 10px 14px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-style: italic;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .replit-button img {
+    height: 28px;
+    vertical-align: middle;
+    border: none;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Active Developer Badge</h1>
+  <p>Tutorial by conicey</p>
+</header>
+
+<main>
+  <div class="instruction-box">
+    <ol>
+      <li>Go to <a href="https://discord.com/developers/applications" target="_blank">https://discord.com/developers/applications</a>, and create a new application on the account you want the badge on.</li>
+
+      <li>Navigate to the <b>Bot</b> tab and click the <b>"Reset Token"</b> button to generate a token (you may need to verify 2FA).</li>
+
+      <li>Copy the token to your clipboard.</li>
+
+      <li>
+        Click on this badge to be redirected to Replit →
+        <a href="https://replit.com/@conicey/discord-active-developer-badge?fork=1" target="_blank" class="replit-button">
+          <img src="https://replit.com/badge/github/conicey/discord-active-developer-badge" alt="Run on Repl.it">
+        </a>
+        <ul>
+          <li>You might have to create an account (you can Register with Google)</li>
+          <li>Click "Remix this app"</li>
+        </ul>
+      </li>
+
+      <li>Wait for the repo template to fully load.</li>
+
+      <li>Click the green <b>"Run .replit run command"</b> button.</li>
+
+      <li>Paste the token you previously copied into the console next to where it asks for the application token.</li>
+
+      <li>Press the <b>Enter</b> key.</li>
+
+      <li>Wait for it to print <b>'DONE | Application/Bot is up and running.'</b>.
+        <ul>
+          <li><b>Don’t close the tab</b> while it's running.</li>
+          <li><b>Don’t stop the program</b> or Discord will think the bot is offline.</li>
+        </ul>
+      </li>
+
+      <li>Go to Discord’s application page → <b>General Information</b> → copy your application ID.</li>
+
+      <li>Create a new Discord server (you can delete it later).</li>
+
+      <li>Enable Community on the server.</li>
+
+      <li>Return to <a href="https://discord.com/developers/applications" target="_blank">Discord Applications</a>.</li>
+
+      <li>Copy the application ID again.</li>
+
+      <li>Invite the bot using:<br>
+        <code>https://discord.com/oauth2/authorize?client_id={applicationid}&scope=bot%20applications.commands&permissions=105227086912</code>
+      </li>
+
+      <li>Use <b>/ping</b> in your server.</li>
+
+      <li>Go to the <a href="https://discord.com/developers/active-developer" target="_blank">Active Developer page</a> and register. (May take up to 24 hours.)</li>
+
+      <li>Congrats on your new badge!</li>
+    </ol>
+
+    <div class="note">
+      <b>NOTE:</b> Ensure “Use data to improve Discord” is enabled in User Settings → Privacy & Safety.
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Conicey. All rights reserved.
+</footer>
+
+</body>
+</html>
