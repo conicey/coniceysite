@@ -70,7 +70,8 @@ svg    { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; st
 
 /* ── Screen ─────────────────────────────────────────────────── */
 .screen {
-  position: absolute; inset: 0;
+  position: fixed;
+  inset: 0;
   display: flex;
   transition: opacity var(--t-slow), transform var(--t-slow);
 }
