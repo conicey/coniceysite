@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>conicey luv</title>
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  margin: 0;
+  padding: 40px 20px;
+
+  --bg: #252525;
+  background-color: var(--bg);
+
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.045) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
+
+  font-family: 'Arial Black', Gadget, sans-serif;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+img.logo {
+  width: 350px;
+  max-width: 90%;
+  height: auto;
+  margin-bottom: 20px;
+  filter: grayscale(100%) contrast(120%);
+  transition: transform 0.3s ease;
+}
+img.logo:hover { transform: scale(1.05); }
+
+.tagline {
+  font-size: 1rem;
+  text-align: center;
+  max-width: 600px;
+  color: #a0a0a0;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+a.social {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1rem;
+  color: #e0e0e0;
+  text-decoration: none;
+  border: 2px solid #444;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a1a;
+  text-transform: lowercase;
+  transition: all 0.3s ease-in-out;
+}
+
+a.social::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-25deg);
+}
+a.social:hover::before { left: 125%; transition: left 0.7s ease-in-out; }
+
+a.social::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #bbb, #eee, #bbb);
+  transition: width 0.3s ease;
+}
+a.social:hover::after { width: 100%; }
+
+a.social:hover {
+  color: #fff;
+  border-color: #777;
+  box-shadow: 0 0 6px rgba(255,255,255,0.15);
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* BIOLINK POP OUT */
+.biolink-container { position: relative; width: 100%; }
+
+.biolink-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1rem;
+  color: #e0e0e0;
+  text-decoration: none;
+  border: 2px solid #444;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a1a;
+  text-transform: lowercase;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+
+.biolink-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-25deg);
+}
+.biolink-btn:hover::before { left: 125%; transition: left 0.7s ease-in-out; }
+
+.biolink-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #bbb, #eee, #bbb);
+  transition: width 0.3s ease;
+}
+.biolink-btn:hover::after { width: 100%; }
+
+.popout-menu {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 4px);
+  background-color: #1a1a1a;
+  border: 2px solid #444;
+  border-radius: 8px;
+  padding: 15px;
+  min-width: 200px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+
+.popout-menu a {
+  color: #e0e0e0;
+  text-decoration: none;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
+}
+.popout-menu a:hover { color: #fff; }
+
+@media (max-width: 500px) {
+  .popout-menu {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transform: translateY(-10px);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .popout-menu.show {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+<body>
+
+<img src="banner.png" alt="conicey" class="logo">
+
+<div class="tagline"></div>
+
+<div class="content">
+  <div class="biolink-container">
+    <a class="biolink-btn" id="biolinkBtn">biolink</a>
+
+    <div class="popout-menu" id="biolinkMenu">
+      <a href="https://haunt.gg/christmas" target="_blank">haunt.gg/christmas</a>
+      <a href="https://guns.lol/conicey" target="_blank">guns.lol/conicey</a>
+    </div>
+  </div>
+
+  <a href="https://discord.com/users/920912709862703115" class="social" target="_blank">discord</a>
+  <a href="https://www.roblox.com/users/3754010089/profile" class="social" target="_blank">roblox</a>
+  <a href="https://www.twitch.tv/coniceyyy" class="social" target="_blank">twitch</a>
+  <a href="https://open.spotify.com/user/31fmuy3e73ju5w5drqr5ezx3d724" class="social" target="_blank">spotify</a>
+  <a href="https://www.youtube.com/@conicey" class="social" target="_blank">youtube</a>
+  <a href="https://x.com/conicey" class="social" target="_blank">x</a>
+  <a href="https://www.tiktok.com/@conicey.net" class="social" target="_blank">tiktok</a>
+  <a href="https://www.instagram.com/conicey_" class="social" target="_blank">instagram</a>
+</div>
+
+<footer></footer>
+
+<script>
+const biolinkBtn = document.getElementById('biolinkBtn');
+const biolinkMenu = document.getElementById('biolinkMenu');
+let hideTimeout;
+
+function showMenu() {
+  clearTimeout(hideTimeout);
+  biolinkMenu.style.opacity = '1';
+  biolinkMenu.style.pointerEvents = 'auto';
+}
+
+function hideMenu() {
+  hideTimeout = setTimeout(() => {
+    biolinkMenu.style.opacity = '0';
+    biolinkMenu.style.pointerEvents = 'none';
+  }, 200);
+}
+
+if (window.innerWidth > 500) {
+  biolinkBtn.addEventListener('mouseenter', showMenu);
+  biolinkBtn.addEventListener('mouseleave', hideMenu);
+  biolinkMenu.addEventListener('mouseenter', showMenu);
+  biolinkMenu.addEventListener('mouseleave', hideMenu);
+}
+
+biolinkBtn.addEventListener('click', () => {
+  if(window.innerWidth <= 500){
+    biolinkMenu.classList.toggle('show');
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if(window.innerWidth <= 500){
+    if(!biolinkBtn.contains(e.target) && !biolinkMenu.contains(e.target)){
+      biolinkMenu.classList.remove('show');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
