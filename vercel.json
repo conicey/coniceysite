@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/api/:path*",       "destination": "/api/:path*" },
+    { "source": "/vault",            "destination": "/vault/index.html" },
+    { "source": "/vault/:path*",     "destination": "/vault/:path*" },
+    { "source": "/biolink",          "destination": "/biolink/index.html" },
+    { "source": "/biolink/:path*",   "destination": "/biolink/:path*" },
+    { "source": "/portfolio",        "destination": "/portfolio/index.html" },
+    { "source": "/portfolio/:path*", "destination": "/portfolio/:path*" },
+    { "source": "/dev",              "destination": "/dev/index.html" },
+    { "source": "/dev/:path*",       "destination": "/dev/:path*" },
+    { "source": "/",                 "destination": "/index.html" }
+  ]
+}
