@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>conicey</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+body {
+  background: #05050a;
+  color: #c8c8d4;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* ASCII hero */
+.ascii-hero {
+  font-size: clamp(5px, 1.1vw, 9px);
+  line-height: 1.2;
+  color: rgba(124,58,237,0.25);
+  white-space: pre;
+  margin-bottom: 48px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Header */
+.site-name {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 700;
+  color: #e2e2ee;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+  position: relative;
+  display: inline-block;
+}
+.site-name::after {
+  content: '_';
+  color: #7c3aed;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.site-sub {
+  font-size: 11px;
+  color: #4a4a60;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+/* Divider */
+.div-line {
+  height: 1px;
+  background: linear-gradient(90deg, #7c3aed, transparent);
+  margin-bottom: 32px;
+  opacity: 0.4;
+}
+
+/* Section */
+.section {
+  background: #08080f;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-left: 2px solid #7c3aed;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.section:hover {
+  border-left-color: #dc2626;
+  box-shadow: -4px 0 20px rgba(220,38,38,0.1);
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #7c3aed;
+  margin-bottom: 10px;
+}
+.section-label::before { content: '// '; }
+
+.section p {
+  font-size: 12px;
+  color: #6a6a80;
+  line-height: 1.8;
+}
+
+/* Links */
+.link-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #08080f;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #9090a8;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: lowercase;
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.link-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: #7c3aed;
+  transform: scaleY(0);
+  transition: transform 0.15s;
+}
+.link-item:hover { color: #e2e2ee; background: #0d0d18; }
+.link-item:hover::before { transform: scaleY(1); }
+.link-item::after { content: '→'; opacity: 0.4; font-size: 12px; }
+
+/* Lists */
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tag-list li {
+  font-size: 11px;
+  color: #5a5a70;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.6;
+}
+.tag-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #7c3aed;
+  font-size: 9px;
+  top: 3px;
+}
+
+.sub-list { margin-top: 6px; margin-left: 14px; }
+.sub-list li::before { color: #dc2626; }
+
+footer {
+  margin-top: 60px;
+  font-size: 9px;
+  color: #2a2a38;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<pre class="ascii-hero">
+  ██████╗ ██████╗ ███╗   ██╗██╗ ██████╗███████╗██╗   ██╗
+ ██╔════╝██╔═══██╗████╗  ██║██║██╔════╝██╔════╝╚██╗ ██╔╝
+ ██║     ██║   ██║██╔██╗ ██║██║██║     █████╗   ╚████╔╝ 
+ ██║     ██║   ██║██║╚██╗██║██║██║     ██╔══╝    ╚██╔╝  
+ ╚██████╗╚██████╔╝██║ ╚████║██║╚██████╗███████╗   ██║   
+  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝ ╚═════╝╚══════╝   ╚═╝  
+</pre>
+
+<div class="site-name">conicey</div>
+<div class="site-sub">developer · animator · designer</div>
+
+<div class="div-line"></div>
+
+<div class="section">
+  <div class="section-label">about</div>
+  <p>developer, animator, and designer. focused on bot automation, ui design, and leaderboard play. most projects are private, experimental, or archived.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">focus</div>
+  <ul class="tag-list">
+    <li>web development, custom sites, static systems</li>
+    <li>frontend UI/UX design and layouts</li>
+    <li>scripting, game systems, backend logic</li>
+    <li>automation tools, moderation systems, dashboards</li>
+    <li>branding, motion graphics, interface animations</li>
+    <li>private tools, prototypes, archived builds</li>
+  </ul>
+</div>
+
+<div class="link-grid">
+  <a class="link-item" href="/biolink">biolink</a>
+  <a class="link-item" href="/dev">active developer badge tutorial</a>
+  <a class="link-item" href="/portfolio">portfolio</a>
+  <a class="link-item" href="/vault">vault //&nbsp;private</a>
+</div>
+
+<div class="section">
+  <div class="section-label">watched</div>
+  <ul class="tag-list">
+    <li>Frieren</li>
+    <li>Black Clover</li>
+    <li>7 Deadly Sins</li>
+    <li>Solo Leveling</li>
+    <li>Kakegurui</li>
+    <li>Puella Magi Madoka Magica</li>
+    <li>Hell's Paradise</li>
+    <li>Invincible</li>
+    <li>Stranger Things</li>
+    <li>Wednesday</li>
+    <li>Avatar: The Last Airbender</li>
+    <li>Money Heist</li>
+    <li>Rick and Morty</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-label">games</div>
+  <ul class="tag-list">
+    <li>Agar.io / Delta</li>
+    <li>Roblox
+      <ul class="tag-list sub-list">
+        <li>KAT</li>
+        <li>Booga Booga</li>
+        <li>Da Hood / Zee Hood</li>
+      </ul>
+    </li>
+    <li>Minecraft
+      <ul class="tag-list sub-list">
+        <li>AspiredMC</li>
+        <li>MythicStar</li>
+        <li>DivineCraft</li>
+      </ul>
+    </li>
+    <li>Fortnite</li>
+    <li>Krunker (KPD)</li>
+  </ul>
+</div>
+
+<footer>// conicey.com · hosted on vercel</footer>
+
+</div>
+</body>
+</html>
