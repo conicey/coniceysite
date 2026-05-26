@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/vault/styles.css" />
+  <style>
+    html, body { height: 100%; width: 100%; margin: 0; padding: 0; overflow: hidden; background: #05050a; }
+  </style>
 </head>
 <body>
 
@@ -215,7 +218,7 @@
     const SUPABASE_ANON_KEY = 'sb_publishable__qwV9qGyXhC9-8QfiXvuqg_W9lEh6Jz';
     window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   </script>
-  <script src="/lib/api.js"></script>
+  <script src="/vault/api.js"></script>
   <script src="/vault/state.js"></script>
   <script src="/vault/toast.js"></script>
   <script src="/vault/modal.js"></script>
