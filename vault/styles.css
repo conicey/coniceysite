@@ -88,8 +88,10 @@ svg    { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; st
   align-items: center;
   justify-content: center;
   background: var(--bg);
-  position: relative;
+  position: fixed;   /* FIX: ensure it's fixed and fills viewport */
+  inset: 0;
   overflow: hidden;
+  isolation: isolate; /* FIX: create stacking context so ::before/::after stay contained */
 }
 
 /* ASCII background art */
@@ -141,7 +143,7 @@ svg    { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; st
   background-size: 40px 40px;
 }
 
-/* Corner decorations */
+/* Corner decorations — FIX: use z-index: 0 so they don't bleed out */
 #screen-login::before,
 #screen-login::after {
   content: '';
@@ -149,6 +151,7 @@ svg    { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; st
   width: 120px;
   height: 120px;
   pointer-events: none;
+  z-index: 0;  /* FIX: was missing, caused the stray rectangle in top-left */
 }
 #screen-login::before {
   top: 20px; left: 20px;
@@ -164,7 +167,7 @@ svg    { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; st
 /* Login box */
 .login-box {
   position: relative;
-  z-index: 1;
+  z-index: 1;          /* FIX: sits above corner decorations and bg */
   width: 100%;
   max-width: 360px;
   padding: 40px;
@@ -174,6 +177,8 @@ svg    { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; st
   display: flex;
   flex-direction: column;
   gap: 20px;
+  /* FIX: explicit margin:auto as fallback in case flex centering on parent is overridden */
+  margin: auto;
 }
 
 /* Glow effect on login box */
