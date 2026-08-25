@@ -4,98 +4,217 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conicey • Development Portfolio</title>
-
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    padding: 40px 20px;
-    --bg: #252525;
-    background-color: var(--bg);
-    background-image: radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
-    background-size: 26px 26px;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    font-family: "Segoe UI", sans-serif;
-    color: #e0e0e0;
-    min-height: 100vh;
-  }
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
 
-  h1 {
-    text-align: center;
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -1px;
-    text-shadow: 0 0 12px rgba(0,0,0,0.7);
-    margin-bottom: 10px;
-  }
+:root {
+  --bg: #000000;
+  --ink: #f1f1ee;
+  --ink-dim: #8f8f95;
+  --ink-dimmer: #5c5c62;
+  --ink-faint: #333338;
+  --line: rgba(255,255,255,0.14);
+  --line-soft: rgba(255,255,255,0.07);
+  --line-strong: rgba(255,255,255,0.5);
+  --panel: rgba(4,4,4,0.9);
+}
 
-  p.sub {
-    text-align: center;
-    font-size: 1.05rem;
-    color: #b5b5b5;
-    margin-bottom: 35px;
-  }
+html { background: var(--bg); }
 
-  .wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
 
-  .box {
-    background: rgba(0,0,0,0.28);
-    padding: 22px 24px;
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 0 22px rgba(0,0,0,0.35);
-    line-height: 1.6;
-    font-size: 1.02rem;
-  }
+/* fixed ascii/dot-matrix art watermark (SVG, no font dependency) */
+.art-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.art-bg svg { opacity: 0.22; }
+.art-bg svg path { fill: #ffffff; }
 
-  .box h2 {
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #ffffff;
-  }
+/* vignette */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,255,255,0.05), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,0,0,0.65), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-  ul {
-    margin-left: 18px;
-  }
+/* scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
 
-  li {
-    margin-bottom: 7px;
-  }
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
 
-  .footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 0.85rem;
-    color: #777;
-  }
+/* breadcrumb nav */
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 34px;
+}
+.crumb a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.crumb a:hover { color: var(--ink); }
+.crumb span.sep { color: var(--ink-faint); }
+.crumb span.here { color: var(--ink-dimmer); }
+
+/* page heading */
+.page-head { margin-bottom: 36px; }
+.page-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  text-transform: uppercase;
+  display: inline-block;
+}
+.page-title::after {
+  content: '_';
+  color: var(--ink-dimmer);
+  animation: blink 1.4s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+
+.page-sub {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--ink-dimmer);
+  text-transform: uppercase;
+}
+
+/* generic section/box card - used across all subpages */
+.box {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-left: 2px solid var(--line-strong);
+  padding: 24px 26px;
+  margin-bottom: 16px;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  line-height: 1.7;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.box:hover {
+  border-left-color: #ffffff;
+  box-shadow: -4px 0 24px rgba(255,255,255,0.05);
+}
+.box h2 {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+.box h2::before { content: '// '; color: var(--ink-faint); }
+.box p { margin-bottom: 0; }
+.box p + p { margin-top: 12px; }
+.box b, .box strong { color: var(--ink); font-weight: 700; }
+.box ul { list-style: none; margin-top: 10px; }
+.box ul ul { margin-top: 8px; margin-left: 4px; }
+.box li {
+  padding-left: 15px;
+  position: relative;
+  margin-bottom: 9px;
+  color: var(--ink-dim);
+}
+.box li::before {
+  content: '\25B8';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  color: var(--ink-dimmer);
+  font-size: 9px;
+}
+.box, .box li, .box p { overflow-wrap: break-word; word-break: break-word; }
+.box a { color: #cfcfd4; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: break-word; word-break: break-word; }
+.box a:hover { color: var(--ink); }
+
+footer, .footer {
+  margin-top: 56px;
+  font-size: 9px;
+  color: var(--ink-faint);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: left;
+}
+footer a, .footer a {
+  color: var(--ink-dimmer);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+footer a:hover, .footer a:hover { color: var(--ink); }
+
+
+.page-head { text-align: left; margin-bottom: 40px; }
+
 </style>
 </head>
 <body>
 
-<h1>Development</h1>
-<p class="sub">Web Development • Automation • Systems • Tools • High-Performance Code</p>
+<div class="art-bg" aria-hidden="true" style="--_s:min(76vw,64vh)"><div style="width:var(--_s);height:var(--_s)"><svg viewBox="0 0 1600 1640" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><path d="M701 101h38v8h-38zM981 101h38v8h-38zM701 111h8v8h-8zM721 111h28v8h-28zM761 111h8v8h-8zM781 111h8v8h-8zM811 111h8v8h-8zM841 111h8v8h-8zM871 111h8v8h-8zM901 111h8v8h-8zM931 111h8v8h-8zM961 111h8v8h-8zM981 111h8v8h-8zM1001 111h28v8h-28zM691 121h88v8h-88zM791 121h18v8h-18zM821 121h18v8h-18zM851 121h18v8h-18zM881 121h18v8h-18zM911 121h18v8h-18zM941 121h98v8h-98zM691 131h68v8h-68zM771 131h198v8h-198zM981 131h48v8h-48zM1041 131h8v8h-8zM691 141h88v8h-88zM791 141h18v8h-18zM821 141h18v8h-18zM851 141h18v8h-18zM881 141h18v8h-18zM911 141h18v8h-18zM941 141h8v8h-8zM961 141h68v8h-68zM701 151h8v8h-8zM721 151h18v8h-18zM781 151h8v8h-8zM841 151h8v8h-8zM901 151h8v8h-8zM941 151h8v8h-8zM981 151h38v8h-38zM1031 151h8v8h-8zM711 161h18v8h-18zM741 161h8v8h-8zM981 161h8v8h-8zM1001 161h18v8h-18zM991 171h28v8h-28zM801 181h8v8h-8zM981 181h8v8h-8zM1001 181h18v8h-18zM1091 181h8v8h-8zM781 191h18v8h-18zM811 191h18v8h-18zM991 191h28v8h-28zM1071 191h18v8h-18zM1101 191h8v8h-8zM771 201h8v8h-8zM791 201h28v8h-28zM831 201h8v8h-8zM851 201h8v8h-8zM871 201h8v8h-8zM891 201h8v8h-8zM911 201h8v8h-8zM931 201h8v8h-8zM951 201h8v8h-8zM971 201h48v8h-48zM1031 201h8v8h-8zM1051 201h8v8h-8zM1071 201h48v8h-48zM771 211h78v8h-78zM861 211h28v8h-28zM901 211h28v8h-28zM941 211h28v8h-28zM981 211h148v8h-148zM761 221h8v8h-8zM781 221h248v8h-248zM1041 221h78v8h-78zM1131 221h8v8h-8zM301 231h38v8h-38zM581 231h38v8h-38zM771 231h58v8h-58zM841 231h8v8h-8zM861 231h8v8h-8zM881 231h8v8h-8zM901 231h8v8h-8zM921 231h8v8h-8zM941 231h8v8h-8zM961 231h8v8h-8zM981 231h28v8h-28zM1021 231h18v8h-18zM1051 231h8v8h-8zM1071 231h48v8h-48zM301 241h8v8h-8zM321 241h28v8h-28zM361 241h8v8h-8zM381 241h8v8h-8zM411 241h8v8h-8zM441 241h8v8h-8zM471 241h8v8h-8zM501 241h8v8h-8zM531 241h8v8h-8zM561 241h8v8h-8zM581 241h8v8h-8zM601 241h28v8h-28zM781 241h38v8h-38zM831 241h8v8h-8zM861 241h8v8h-8zM891 241h8v8h-8zM931 241h8v8h-8zM971 241h8v8h-8zM991 241h28v8h-28zM1041 241h8v8h-8zM1061 241h8v8h-8zM1081 241h18v8h-18zM1111 241h8v8h-8zM291 251h88v8h-88zM391 251h18v8h-18zM421 251h18v8h-18zM451 251h18v8h-18zM481 251h18v8h-18zM511 251h18v8h-18zM541 251h98v8h-98zM791 251h28v8h-28zM991 251h18v8h-18zM1021 251h8v8h-8zM1081 251h8v8h-8zM1101 251h8v8h-8zM291 261h68v8h-68zM371 261h198v8h-198zM581 261h48v8h-48zM641 261h8v8h-8zM781 261h8v8h-8zM801 261h18v8h-18zM991 261h28v8h-28zM291 271h88v8h-88zM391 271h18v8h-18zM421 271h18v8h-18zM451 271h18v8h-18zM481 271h18v8h-18zM511 271h18v8h-18zM541 271h8v8h-8zM561 271h68v8h-68zM791 271h18v8h-18zM821 271h8v8h-8zM981 271h8v8h-8zM1001 271h18v8h-18zM1101 271h8v8h-8zM301 281h8v8h-8zM321 281h18v8h-18zM381 281h8v8h-8zM441 281h8v8h-8zM501 281h8v8h-8zM541 281h8v8h-8zM581 281h38v8h-38zM631 281h8v8h-8zM781 281h8v8h-8zM801 281h18v8h-18zM991 281h18v8h-18zM1021 281h8v8h-8zM311 291h18v8h-18zM341 291h8v8h-8zM581 291h8v8h-8zM601 291h18v8h-18zM791 291h28v8h-28zM981 291h8v8h-8zM1001 291h18v8h-18zM591 301h28v8h-28zM781 301h8v8h-8zM801 301h18v8h-18zM991 301h28v8h-28zM581 311h8v8h-8zM601 311h18v8h-18zM791 311h28v8h-28zM981 311h8v8h-8zM1001 311h18v8h-18zM591 321h28v8h-28zM791 321h18v8h-18zM821 321h8v8h-8zM991 321h18v8h-18zM1021 321h8v8h-8zM581 331h8v8h-8zM601 331h18v8h-18zM781 331h8v8h-8zM801 331h18v8h-18zM991 331h28v8h-28zM591 341h18v8h-18zM621 341h8v8h-8zM791 341h28v8h-28zM981 341h8v8h-8zM1001 341h18v8h-18zM581 351h8v8h-8zM601 351h18v8h-18zM781 351h8v8h-8zM801 351h18v8h-18zM991 351h28v8h-28zM591 361h28v8h-28zM791 361h18v8h-18zM821 361h8v8h-8zM981 361h8v8h-8zM1001 361h18v8h-18zM581 371h8v8h-8zM601 371h18v8h-18zM791 371h28v8h-28zM991 371h18v8h-18zM1021 371h8v8h-8zM591 381h18v8h-18zM621 381h8v8h-8zM781 381h8v8h-8zM801 381h18v8h-18zM981 381h8v8h-8zM1001 381h18v8h-18zM591 391h28v8h-28zM791 391h18v8h-18zM821 391h8v8h-8zM991 391h28v8h-28zM581 401h8v8h-8zM601 401h18v8h-18zM781 401h8v8h-8zM801 401h18v8h-18zM991 401h18v8h-18zM1021 401h8v8h-8zM591 411h28v8h-28zM791 411h28v8h-28zM981 411h8v8h-8zM1001 411h18v8h-18zM581 421h8v8h-8zM601 421h18v8h-18zM791 421h18v8h-18zM821 421h8v8h-8zM991 421h28v8h-28zM591 431h18v8h-18zM621 431h8v8h-8zM781 431h8v8h-8zM801 431h18v8h-18zM981 431h8v8h-8zM1001 431h18v8h-18zM581 441h8v8h-8zM601 441h18v8h-18zM791 441h28v8h-28zM991 441h18v8h-18zM1021 441h8v8h-8zM591 451h28v8h-28zM781 451h8v8h-8zM801 451h18v8h-18zM991 451h28v8h-28zM581 461h8v8h-8zM601 461h18v8h-18zM791 461h18v8h-18zM821 461h8v8h-8zM981 461h8v8h-8zM1001 461h18v8h-18zM591 471h18v8h-18zM621 471h8v8h-8zM791 471h28v8h-28zM991 471h18v8h-18zM1021 471h8v8h-8zM141 481h38v8h-38zM591 481h28v8h-28zM781 481h8v8h-8zM801 481h18v8h-18zM991 481h28v8h-28zM141 491h8v8h-8zM161 491h28v8h-28zM581 491h28v8h-28zM621 491h8v8h-8zM791 491h28v8h-28zM981 491h28v8h-28zM1021 491h8v8h-8zM131 501h68v8h-68zM591 501h28v8h-28zM781 501h28v8h-28zM821 501h8v8h-8zM991 501h28v8h-28zM1301 501h38v8h-38zM131 511h58v8h-58zM201 511h8v8h-8zM571 511h58v8h-58zM771 511h8v8h-8zM791 511h38v8h-38zM971 511h58v8h-58zM1301 511h8v8h-8zM1321 511h28v8h-28zM131 521h58v8h-58zM531 521h8v8h-8zM551 521h8v8h-8zM571 521h68v8h-68zM651 521h8v8h-8zM671 521h8v8h-8zM691 521h8v8h-8zM711 521h8v8h-8zM731 521h8v8h-8zM751 521h8v8h-8zM771 521h68v8h-68zM851 521h8v8h-8zM871 521h8v8h-8zM901 521h8v8h-8zM921 521h8v8h-8zM941 521h8v8h-8zM961 521h8v8h-8zM981 521h58v8h-58zM1051 521h8v8h-8zM1071 521h8v8h-8zM1291 521h68v8h-68zM141 531h8v8h-8zM161 531h18v8h-18zM191 531h8v8h-8zM521 531h18v8h-18zM551 531h108v8h-108zM671 531h18v8h-18zM701 531h18v8h-18zM731 531h18v8h-18zM761 531h98v8h-98zM871 531h38v8h-38zM921 531h18v8h-18zM951 531h108v8h-108zM1071 531h8v8h-8zM1291 531h58v8h-58zM1361 531h8v8h-8zM141 541h38v8h-38zM511 541h8v8h-8zM531 541h88v8h-88zM631 541h398v8h-398zM1041 541h48v8h-48zM1291 541h58v8h-58zM151 551h18v8h-18zM181 551h8v8h-8zM521 551h38v8h-38zM571 551h8v8h-8zM591 551h48v8h-48zM651 551h8v8h-8zM671 551h8v8h-8zM691 551h8v8h-8zM711 551h8v8h-8zM731 551h8v8h-8zM751 551h8v8h-8zM771 551h48v8h-48zM831 551h8v8h-8zM851 551h8v8h-8zM871 551h8v8h-8zM891 551h8v8h-8zM911 551h8v8h-8zM931 551h8v8h-8zM951 551h8v8h-8zM971 551h8v8h-8zM991 551h18v8h-18zM1021 551h28v8h-28zM1061 551h28v8h-28zM1301 551h38v8h-38zM1351 551h8v8h-8zM151 561h28v8h-28zM521 561h28v8h-28zM581 561h8v8h-8zM601 561h8v8h-8zM661 561h8v8h-8zM701 561h8v8h-8zM741 561h8v8h-8zM801 561h8v8h-8zM821 561h8v8h-8zM861 561h8v8h-8zM921 561h8v8h-8zM961 561h8v8h-8zM981 561h8v8h-8zM1001 561h18v8h-18zM1051 561h28v8h-28zM1091 561h8v8h-8zM1311 561h28v8h-28zM151 571h18v8h-18zM511 571h8v8h-8zM531 571h18v8h-18zM641 571h8v8h-8zM781 571h8v8h-8zM901 571h8v8h-8zM1061 571h28v8h-28zM1301 571h8v8h-8zM1321 571h18v8h-18zM141 581h8v8h-8zM161 581h18v8h-18zM521 581h28v8h-28zM1051 581h8v8h-8zM1071 581h18v8h-18zM1311 581h18v8h-18zM1341 581h8v8h-8zM151 591h28v8h-28zM521 591h18v8h-18zM551 591h8v8h-8zM1061 591h18v8h-18zM1091 591h8v8h-8zM1301 591h8v8h-8zM1321 591h18v8h-18zM151 601h28v8h-28zM511 601h8v8h-8zM531 601h18v8h-18zM1051 601h8v8h-8zM1071 601h18v8h-18zM1311 601h28v8h-28zM141 611h8v8h-8zM161 611h18v8h-18zM511 611h38v8h-38zM1061 611h28v8h-28zM1301 611h8v8h-8zM1321 611h18v8h-18zM151 621h28v8h-28zM191 621h8v8h-8zM501 621h8v8h-8zM521 621h18v8h-18zM551 621h8v8h-8zM621 621h8v8h-8zM641 621h8v8h-8zM661 621h8v8h-8zM681 621h8v8h-8zM701 621h8v8h-8zM721 621h8v8h-8zM741 621h8v8h-8zM761 621h8v8h-8zM781 621h8v8h-8zM801 621h8v8h-8zM821 621h8v8h-8zM841 621h8v8h-8zM861 621h8v8h-8zM881 621h8v8h-8zM901 621h8v8h-8zM931 621h8v8h-8zM951 621h8v8h-8zM971 621h8v8h-8zM1051 621h48v8h-48zM1301 621h38v8h-38zM131 631h58v8h-58zM211 631h8v8h-8zM231 631h8v8h-8zM251 631h8v8h-8zM271 631h8v8h-8zM301 631h8v8h-8zM331 631h8v8h-8zM361 631h8v8h-8zM391 631h8v8h-8zM421 631h8v8h-8zM451 631h8v8h-8zM481 631h8v8h-8zM501 631h48v8h-48zM621 631h18v8h-18zM651 631h8v8h-8zM671 631h8v8h-8zM691 631h8v8h-8zM711 631h18v8h-18zM741 631h18v8h-18zM771 631h18v8h-18zM801 631h18v8h-18zM831 631h18v8h-18zM861 631h18v8h-18zM891 631h8v8h-8zM911 631h18v8h-18zM941 631h8v8h-8zM961 631h8v8h-8zM981 631h8v8h-8zM1061 631h58v8h-58zM1131 631h8v8h-8zM1151 631h8v8h-8zM1171 631h8v8h-8zM1191 631h8v8h-8zM1221 631h8v8h-8zM1241 631h8v8h-8zM1271 631h8v8h-8zM1291 631h8v8h-8zM1311 631h38v8h-38zM141 641h88v8h-88zM241 641h18v8h-18zM271 641h28v8h-28zM311 641h48v8h-48zM371 641h18v8h-18zM401 641h48v8h-48zM461 641h98v8h-98zM611 641h8v8h-8zM631 641h58v8h-58zM701 641h18v8h-18zM731 641h8v8h-8zM751 641h18v8h-18zM781 641h18v8h-18zM811 641h18v8h-18zM841 641h18v8h-18zM871 641h18v8h-18zM901 641h18v8h-18zM931 641h58v8h-58zM1041 641h8v8h-8zM1061 641h48v8h-48zM1121 641h28v8h-28zM1161 641h18v8h-18zM1191 641h38v8h-38zM1241 641h118v8h-118zM121 651h78v8h-78zM211 651h118v8h-118zM341 651h78v8h-78zM431 651h118v8h-118zM621 651h18v8h-18zM691 651h8v8h-8zM731 651h8v8h-8zM891 651h8v8h-8zM921 651h8v8h-8zM971 651h8v8h-8zM991 651h8v8h-8zM1051 651h158v8h-158zM1221 651h48v8h-48zM1281 651h68v8h-68zM1361 651h8v8h-8zM141 661h38v8h-38zM191 661h28v8h-28zM231 661h8v8h-8zM251 661h8v8h-8zM271 661h8v8h-8zM291 661h8v8h-8zM311 661h28v8h-28zM351 661h18v8h-18zM381 661h18v8h-18zM411 661h28v8h-28zM451 661h8v8h-8zM471 661h8v8h-8zM491 661h8v8h-8zM511 661h48v8h-48zM611 661h8v8h-8zM631 661h8v8h-8zM961 661h8v8h-8zM981 661h8v8h-8zM1051 661h58v8h-58zM1121 661h8v8h-8zM1141 661h8v8h-8zM1161 661h8v8h-8zM1181 661h8v8h-8zM1201 661h28v8h-28zM1241 661h8v8h-8zM1261 661h18v8h-18zM1291 661h58v8h-58zM141 671h48v8h-48zM231 671h8v8h-8zM261 671h8v8h-8zM301 671h8v8h-8zM401 671h8v8h-8zM451 671h8v8h-8zM481 671h8v8h-8zM501 671h38v8h-38zM621 671h18v8h-18zM971 671h18v8h-18zM1061 671h28v8h-28zM1101 671h8v8h-8zM1121 671h8v8h-8zM1161 671h8v8h-8zM1191 671h8v8h-8zM1241 671h8v8h-8zM1281 671h8v8h-8zM1311 671h18v8h-18zM1341 671h8v8h-8zM161 681h8v8h-8zM371 681h8v8h-8zM511 681h38v8h-38zM561 681h8v8h-8zM611 681h8v8h-8zM631 681h8v8h-8zM971 681h8v8h-8zM991 681h8v8h-8zM1051 681h8v8h-8zM1071 681h28v8h-28zM1301 681h8v8h-8zM1321 681h18v8h-18zM151 691h8v8h-8zM521 691h28v8h-28zM621 691h8v8h-8zM641 691h8v8h-8zM961 691h8v8h-8zM981 691h8v8h-8zM1061 691h28v8h-28zM511 701h8v8h-8zM531 701h8v8h-8zM551 701h8v8h-8zM621 701h18v8h-18zM971 701h18v8h-18zM1051 701h8v8h-8zM1071 701h18v8h-18zM521 711h28v8h-28zM611 711h8v8h-8zM631 711h8v8h-8zM971 711h8v8h-8zM991 711h8v8h-8zM1061 711h28v8h-28zM511 721h8v8h-8zM531 721h18v8h-18zM621 721h18v8h-18zM961 721h8v8h-8zM981 721h8v8h-8zM1061 721h18v8h-18zM1091 721h8v8h-8zM521 731h28v8h-28zM621 731h8v8h-8zM641 731h8v8h-8zM971 731h18v8h-18zM1051 731h8v8h-8zM1071 731h18v8h-18zM511 741h8v8h-8zM531 741h18v8h-18zM611 741h8v8h-8zM631 741h8v8h-8zM961 741h8v8h-8zM981 741h8v8h-8zM1061 741h28v8h-28zM521 751h18v8h-18zM551 751h8v8h-8zM621 751h18v8h-18zM971 751h18v8h-18zM1051 751h8v8h-8zM1071 751h18v8h-18zM521 761h28v8h-28zM621 761h8v8h-8zM641 761h8v8h-8zM971 761h8v8h-8zM991 761h8v8h-8zM1061 761h18v8h-18zM1091 761h8v8h-8zM511 771h8v8h-8zM531 771h18v8h-18zM611 771h8v8h-8zM631 771h8v8h-8zM961 771h8v8h-8zM981 771h8v8h-8zM1061 771h28v8h-28zM521 781h18v8h-18zM551 781h8v8h-8zM621 781h18v8h-18zM971 781h18v8h-18zM1051 781h8v8h-8zM1071 781h18v8h-18zM511 791h8v8h-8zM531 791h18v8h-18zM621 791h8v8h-8zM641 791h8v8h-8zM961 791h8v8h-8zM981 791h8v8h-8zM1061 791h28v8h-28zM521 801h28v8h-28zM611 801h8v8h-8zM631 801h8v8h-8zM971 801h18v8h-18zM1051 801h8v8h-8zM1071 801h18v8h-18zM521 811h18v8h-18zM551 811h8v8h-8zM621 811h18v8h-18zM961 811h8v8h-8zM981 811h8v8h-8zM1061 811h18v8h-18zM1091 811h8v8h-8zM511 821h8v8h-8zM531 821h18v8h-18zM621 821h8v8h-8zM641 821h8v8h-8zM971 821h18v8h-18zM1051 821h8v8h-8zM1071 821h18v8h-18zM521 831h28v8h-28zM611 831h8v8h-8zM631 831h8v8h-8zM961 831h8v8h-8zM981 831h8v8h-8zM1061 831h28v8h-28zM521 841h18v8h-18zM551 841h8v8h-8zM621 841h18v8h-18zM971 841h18v8h-18zM1051 841h8v8h-8zM1071 841h18v8h-18zM511 851h8v8h-8zM531 851h18v8h-18zM621 851h8v8h-8zM641 851h8v8h-8zM961 851h8v8h-8zM981 851h8v8h-8zM1061 851h18v8h-18zM1091 851h8v8h-8zM521 861h28v8h-28zM611 861h8v8h-8zM631 861h8v8h-8zM971 861h8v8h-8zM991 861h8v8h-8zM1051 861h8v8h-8zM1071 861h18v8h-18zM521 871h18v8h-18zM551 871h8v8h-8zM621 871h18v8h-18zM961 871h8v8h-8zM981 871h8v8h-8zM1061 871h28v8h-28zM511 881h8v8h-8zM531 881h18v8h-18zM621 881h8v8h-8zM641 881h8v8h-8zM971 881h18v8h-18zM1051 881h8v8h-8zM1071 881h18v8h-18zM521 891h28v8h-28zM611 891h8v8h-8zM631 891h8v8h-8zM961 891h8v8h-8zM981 891h8v8h-8zM1061 891h18v8h-18zM1091 891h8v8h-8zM511 901h8v8h-8zM531 901h18v8h-18zM621 901h18v8h-18zM971 901h18v8h-18zM1051 901h8v8h-8zM1071 901h18v8h-18zM521 911h18v8h-18zM551 911h8v8h-8zM621 911h8v8h-8zM641 911h8v8h-8zM961 911h8v8h-8zM981 911h8v8h-8zM1061 911h28v8h-28zM511 921h8v8h-8zM531 921h18v8h-18zM611 921h8v8h-8zM631 921h8v8h-8zM971 921h18v8h-18zM1051 921h8v8h-8zM1071 921h18v8h-18zM521 931h28v8h-28zM621 931h18v8h-18zM961 931h8v8h-8zM981 931h8v8h-8zM1061 931h28v8h-28zM1501 931h8v8h-8zM61 941h38v8h-38zM501 941h38v8h-38zM551 941h8v8h-8zM621 941h8v8h-8zM641 941h8v8h-8zM971 941h8v8h-8zM991 941h8v8h-8zM1051 941h48v8h-48zM1481 941h18v8h-18zM1511 941h8v8h-8zM61 951h8v8h-8zM81 951h28v8h-28zM121 951h8v8h-8zM141 951h8v8h-8zM171 951h8v8h-8zM201 951h8v8h-8zM231 951h8v8h-8zM261 951h8v8h-8zM281 951h8v8h-8zM301 951h8v8h-8zM321 951h8v8h-8zM341 951h8v8h-8zM361 951h8v8h-8zM381 951h8v8h-8zM401 951h8v8h-8zM421 951h8v8h-8zM441 951h8v8h-8zM461 951h8v8h-8zM481 951h8v8h-8zM501 951h48v8h-48zM611 951h8v8h-8zM631 951h8v8h-8zM971 951h18v8h-18zM1061 951h58v8h-58zM1131 951h8v8h-8zM1151 951h8v8h-8zM1171 951h8v8h-8zM1191 951h8v8h-8zM1211 951h8v8h-8zM1231 951h8v8h-8zM1251 951h8v8h-8zM1271 951h8v8h-8zM1291 951h8v8h-8zM1311 951h8v8h-8zM1331 951h8v8h-8zM1351 951h8v8h-8zM1371 951h8v8h-8zM1391 951h8v8h-8zM1411 951h8v8h-8zM1431 951h8v8h-8zM1451 951h8v8h-8zM1471 951h8v8h-8zM1491 951h38v8h-38zM51 961h88v8h-88zM151 961h18v8h-18zM181 961h48v8h-48zM241 961h28v8h-28zM281 961h18v8h-18zM311 961h18v8h-18zM341 961h18v8h-18zM371 961h18v8h-18zM401 961h18v8h-18zM431 961h18v8h-18zM461 961h18v8h-18zM491 961h68v8h-68zM621 961h18v8h-18zM961 961h8v8h-8zM981 961h8v8h-8zM1041 961h8v8h-8zM1061 961h38v8h-38zM1111 961h28v8h-28zM1151 961h18v8h-18zM1181 961h18v8h-18zM1211 961h18v8h-18zM1241 961h18v8h-18zM1271 961h18v8h-18zM1301 961h18v8h-18zM1331 961h18v8h-18zM1361 961h18v8h-18zM1391 961h18v8h-18zM1421 961h18v8h-18zM1451 961h88v8h-88zM51 971h68v8h-68zM131 971h68v8h-68zM211 971h338v8h-338zM621 971h18v8h-18zM651 971h8v8h-8zM671 971h8v8h-8zM701 971h8v8h-8zM731 971h8v8h-8zM761 971h8v8h-8zM791 971h8v8h-8zM811 971h8v8h-8zM841 971h8v8h-8zM861 971h8v8h-8zM881 971h8v8h-8zM901 971h8v8h-8zM921 971h8v8h-8zM941 971h8v8h-8zM961 971h18v8h-18zM991 971h8v8h-8zM1051 971h478v8h-478zM1541 971h8v8h-8zM51 981h88v8h-88zM151 981h18v8h-18zM181 981h28v8h-28zM221 981h18v8h-18zM251 981h8v8h-8zM271 981h8v8h-8zM291 981h8v8h-8zM311 981h8v8h-8zM331 981h8v8h-8zM351 981h8v8h-8zM371 981h8v8h-8zM391 981h8v8h-8zM411 981h8v8h-8zM431 981h8v8h-8zM451 981h8v8h-8zM471 981h18v8h-18zM501 981h58v8h-58zM611 981h8v8h-8zM631 981h18v8h-18zM661 981h8v8h-8zM681 981h18v8h-18zM711 981h18v8h-18zM741 981h18v8h-18zM771 981h18v8h-18zM801 981h8v8h-8zM821 981h18v8h-18zM851 981h8v8h-8zM871 981h8v8h-8zM891 981h18v8h-18zM921 981h18v8h-18zM951 981h8v8h-8zM971 981h18v8h-18zM1051 981h68v8h-68zM1131 981h8v8h-8zM1151 981h8v8h-8zM1171 981h8v8h-8zM1191 981h8v8h-8zM1211 981h8v8h-8zM1231 981h8v8h-8zM1251 981h8v8h-8zM1271 981h8v8h-8zM1291 981h8v8h-8zM1311 981h8v8h-8zM1331 981h8v8h-8zM1351 981h8v8h-8zM1371 981h8v8h-8zM1391 981h8v8h-8zM1411 981h8v8h-8zM1431 981h8v8h-8zM1451 981h8v8h-8zM1471 981h58v8h-58zM61 991h8v8h-8zM81 991h18v8h-18zM141 991h8v8h-8zM211 991h8v8h-8zM261 991h8v8h-8zM301 991h8v8h-8zM341 991h8v8h-8zM381 991h8v8h-8zM421 991h8v8h-8zM461 991h8v8h-8zM491 991h8v8h-8zM511 991h28v8h-28zM621 991h8v8h-8zM641 991h38v8h-38zM691 991h18v8h-18zM721 991h18v8h-18zM751 991h18v8h-18zM781 991h38v8h-38zM831 991h58v8h-58zM901 991h18v8h-18zM931 991h38v8h-38zM981 991h8v8h-8zM1061 991h38v8h-38zM1121 991h8v8h-8zM1161 991h8v8h-8zM1201 991h8v8h-8zM1241 991h8v8h-8zM1281 991h8v8h-8zM1321 991h8v8h-8zM1361 991h8v8h-8zM1401 991h8v8h-8zM1431 991h8v8h-8zM1461 991h8v8h-8zM1491 991h28v8h-28zM1531 991h8v8h-8zM61 1001h38v8h-38zM111 1001h8v8h-8zM501 1001h8v8h-8zM521 1001h28v8h-28zM561 1001h8v8h-8zM711 1001h8v8h-8zM741 1001h8v8h-8zM771 1001h8v8h-8zM1051 1001h8v8h-8zM1071 1001h18v8h-18zM1101 1001h8v8h-8zM1481 1001h38v8h-38zM71 1011h18v8h-18zM101 1011h8v8h-8zM511 1011h38v8h-38zM691 1011h8v8h-8zM1061 1011h28v8h-28zM1491 1011h8v8h-8zM1511 1011h8v8h-8zM71 1021h28v8h-28zM521 1021h8v8h-8zM541 1021h8v8h-8zM1051 1021h8v8h-8zM1071 1021h18v8h-18zM1491 1021h28v8h-28zM71 1031h18v8h-18zM521 1031h28v8h-28zM1061 1031h28v8h-28zM1481 1031h8v8h-8zM1501 1031h18v8h-18zM61 1041h8v8h-8zM81 1041h18v8h-18zM521 1041h18v8h-18zM551 1041h8v8h-8zM1051 1041h8v8h-8zM1071 1041h18v8h-18zM1491 1041h28v8h-28zM71 1051h28v8h-28zM511 1051h8v8h-8zM531 1051h18v8h-18zM601 1051h8v8h-8zM801 1051h8v8h-8zM931 1051h8v8h-8zM981 1051h8v8h-8zM1001 1051h8v8h-8zM1061 1051h18v8h-18zM1091 1051h8v8h-8zM1481 1051h38v8h-38zM1531 1051h8v8h-8zM71 1061h28v8h-28zM521 1061h28v8h-28zM561 1061h8v8h-8zM581 1061h18v8h-18zM611 1061h18v8h-18zM641 1061h8v8h-8zM661 1061h8v8h-8zM681 1061h8v8h-8zM701 1061h8v8h-8zM731 1061h8v8h-8zM761 1061h8v8h-8zM781 1061h18v8h-18zM811 1061h18v8h-18zM841 1061h8v8h-8zM861 1061h8v8h-8zM881 1061h8v8h-8zM901 1061h8v8h-8zM921 1061h8v8h-8zM951 1061h8v8h-8zM971 1061h8v8h-8zM991 1061h8v8h-8zM1011 1061h18v8h-18zM1041 1061h48v8h-48zM1471 1061h8v8h-8zM1491 1061h28v8h-28zM61 1071h8v8h-8zM81 1071h18v8h-18zM511 1071h8v8h-8zM531 1071h48v8h-48zM591 1071h88v8h-88zM691 1071h38v8h-38zM741 1071h38v8h-38zM791 1071h128v8h-128zM931 1071h38v8h-38zM981 1071h58v8h-58zM1051 1071h28v8h-28zM1471 1071h68v8h-68zM71 1081h28v8h-28zM521 1081h118v8h-118zM651 1081h58v8h-58zM721 1081h118v8h-118zM851 1081h18v8h-18zM881 1081h18v8h-18zM911 1081h38v8h-38zM961 1081h128v8h-128zM1471 1081h68v8h-68zM51 1091h58v8h-58zM121 1091h8v8h-8zM521 1091h8v8h-8zM541 1091h8v8h-8zM561 1091h88v8h-88zM661 1091h8v8h-8zM681 1091h8v8h-8zM701 1091h38v8h-38zM751 1091h8v8h-8zM771 1091h78v8h-78zM861 1091h18v8h-18zM891 1091h28v8h-28zM931 1091h108v8h-108zM1051 1091h8v8h-8zM1071 1091h8v8h-8zM1471 1091h58v8h-58zM61 1101h48v8h-48zM541 1101h8v8h-8zM571 1101h58v8h-58zM641 1101h8v8h-8zM681 1101h8v8h-8zM751 1101h8v8h-8zM771 1101h58v8h-58zM841 1101h8v8h-8zM881 1101h8v8h-8zM971 1101h58v8h-58zM1041 1101h8v8h-8zM1081 1101h8v8h-8zM1481 1101h8v8h-8zM1501 1101h18v8h-18zM1531 1101h8v8h-8zM41 1111h78v8h-78zM581 1111h38v8h-38zM781 1111h38v8h-38zM981 1111h38v8h-38zM1031 1111h8v8h-8zM1491 1111h8v8h-8zM1511 1111h8v8h-8zM61 1121h48v8h-48zM591 1121h18v8h-18zM621 1121h8v8h-8zM791 1121h18v8h-18zM821 1121h8v8h-8zM991 1121h18v8h-18zM1021 1121h8v8h-8zM1501 1121h8v8h-8zM61 1131h28v8h-28zM101 1131h8v8h-8zM121 1131h8v8h-8zM581 1131h8v8h-8zM601 1131h18v8h-18zM781 1131h8v8h-8zM801 1131h18v8h-18zM981 1131h8v8h-8zM1001 1131h18v8h-18zM81 1141h18v8h-18zM591 1141h28v8h-28zM791 1141h28v8h-28zM991 1141h28v8h-28zM71 1151h8v8h-8zM581 1151h8v8h-8zM601 1151h18v8h-18zM781 1151h8v8h-8zM801 1151h18v8h-18zM981 1151h28v8h-28zM1021 1151h8v8h-8zM591 1161h28v8h-28zM791 1161h28v8h-28zM991 1161h28v8h-28zM581 1171h8v8h-8zM601 1171h18v8h-18zM781 1171h8v8h-8zM801 1171h18v8h-18zM991 1171h18v8h-18zM591 1181h18v8h-18zM621 1181h8v8h-8zM791 1181h28v8h-28zM981 1181h8v8h-8zM1001 1181h18v8h-18zM581 1191h8v8h-8zM601 1191h18v8h-18zM781 1191h8v8h-8zM801 1191h18v8h-18zM991 1191h28v8h-28zM591 1201h28v8h-28zM791 1201h18v8h-18zM821 1201h8v8h-8zM981 1201h8v8h-8zM1001 1201h18v8h-18zM581 1211h8v8h-8zM601 1211h18v8h-18zM781 1211h8v8h-8zM801 1211h18v8h-18zM991 1211h28v8h-28zM591 1221h18v8h-18zM621 1221h8v8h-8zM791 1221h28v8h-28zM981 1221h8v8h-8zM1001 1221h18v8h-18zM581 1231h8v8h-8zM601 1231h18v8h-18zM781 1231h8v8h-8zM801 1231h18v8h-18zM991 1231h28v8h-28zM591 1241h28v8h-28zM791 1241h28v8h-28zM981 1241h8v8h-8zM1001 1241h18v8h-18zM581 1251h8v8h-8zM601 1251h18v8h-18zM781 1251h8v8h-8zM801 1251h18v8h-18zM991 1251h18v8h-18zM1021 1251h8v8h-8zM591 1261h18v8h-18zM621 1261h8v8h-8zM791 1261h18v8h-18zM821 1261h8v8h-8zM981 1261h8v8h-8zM1001 1261h18v8h-18zM591 1271h28v8h-28zM781 1271h8v8h-8zM801 1271h18v8h-18zM991 1271h28v8h-28zM581 1281h8v8h-8zM601 1281h18v8h-18zM791 1281h28v8h-28zM981 1281h8v8h-8zM1001 1281h18v8h-18zM591 1291h28v8h-28zM781 1291h8v8h-8zM801 1291h18v8h-18zM991 1291h28v8h-28zM581 1301h8v8h-8zM601 1301h18v8h-18zM791 1301h18v8h-18zM821 1301h8v8h-8zM981 1301h8v8h-8zM1001 1301h18v8h-18zM591 1311h18v8h-18zM621 1311h8v8h-8zM781 1311h8v8h-8zM801 1311h18v8h-18zM991 1311h28v8h-28zM1251 1311h8v8h-8zM581 1321h8v8h-8zM601 1321h18v8h-18zM791 1321h28v8h-28zM981 1321h28v8h-28zM1021 1321h8v8h-8zM1231 1321h18v8h-18zM1261 1321h8v8h-8zM531 1331h8v8h-8zM591 1331h28v8h-28zM781 1331h8v8h-8zM801 1331h18v8h-18zM971 1331h8v8h-8zM991 1331h38v8h-38zM1041 1331h8v8h-8zM1061 1331h8v8h-8zM1081 1331h8v8h-8zM1101 1331h8v8h-8zM1121 1331h8v8h-8zM1141 1331h8v8h-8zM1161 1331h8v8h-8zM1181 1331h8v8h-8zM1201 1331h8v8h-8zM1221 1331h8v8h-8zM1241 1331h38v8h-38zM511 1341h18v8h-18zM541 1341h8v8h-8zM581 1341h28v8h-28zM621 1341h8v8h-8zM781 1341h38v8h-38zM971 1341h88v8h-88zM1071 1341h28v8h-28zM1111 1341h18v8h-18zM1141 1341h18v8h-18zM1171 1341h18v8h-18zM1201 1341h88v8h-88zM501 1351h8v8h-8zM521 1351h48v8h-48zM591 1351h28v8h-28zM641 1351h8v8h-8zM661 1351h8v8h-8zM681 1351h8v8h-8zM701 1351h8v8h-8zM721 1351h8v8h-8zM741 1351h8v8h-8zM761 1351h8v8h-8zM781 1351h48v8h-48zM971 1351h68v8h-68zM1051 1351h228v8h-228zM1291 1351h8v8h-8zM501 1361h148v8h-148zM661 1361h18v8h-18zM691 1361h18v8h-18zM721 1361h18v8h-18zM751 1361h88v8h-88zM961 1361h8v8h-8zM981 1361h78v8h-78zM1071 1361h8v8h-8zM1091 1361h8v8h-8zM1111 1361h8v8h-8zM1131 1361h8v8h-8zM1151 1361h8v8h-8zM1171 1361h8v8h-8zM1191 1361h8v8h-8zM1211 1361h8v8h-8zM1231 1361h48v8h-48zM501 1371h268v8h-268zM781 1371h38v8h-38zM831 1371h8v8h-8zM981 1371h28v8h-28zM1021 1371h8v8h-8zM1071 1371h8v8h-8zM1111 1371h8v8h-8zM1141 1371h8v8h-8zM1171 1371h8v8h-8zM1201 1371h8v8h-8zM1221 1371h8v8h-8zM1241 1371h28v8h-28zM1281 1371h8v8h-8zM501 1381h8v8h-8zM521 1381h38v8h-38zM571 1381h8v8h-8zM591 1381h28v8h-28zM631 1381h8v8h-8zM651 1381h8v8h-8zM671 1381h8v8h-8zM691 1381h8v8h-8zM711 1381h8v8h-8zM731 1381h8v8h-8zM751 1381h78v8h-78zM841 1381h8v8h-8zM1001 1381h18v8h-18zM1241 1381h8v8h-8zM1261 1381h8v8h-8zM511 1391h38v8h-38zM561 1391h8v8h-8zM581 1391h38v8h-38zM641 1391h8v8h-8zM681 1391h8v8h-8zM721 1391h8v8h-8zM781 1391h8v8h-8zM801 1391h18v8h-18zM831 1391h8v8h-8zM991 1391h8v8h-8zM511 1401h8v8h-8zM531 1401h8v8h-8zM591 1401h8v8h-8zM611 1401h8v8h-8zM781 1401h8v8h-8zM801 1401h8v8h-8zM821 1401h8v8h-8zM541 1411h8v8h-8zM591 1411h28v8h-28zM581 1421h8v8h-8zM601 1421h18v8h-18zM591 1431h28v8h-28zM581 1441h8v8h-8zM601 1441h18v8h-18zM691 1441h8v8h-8zM591 1451h28v8h-28zM631 1451h8v8h-8zM681 1451h8v8h-8zM701 1451h28v8h-28zM571 1461h58v8h-58zM651 1461h8v8h-8zM671 1461h8v8h-8zM691 1461h28v8h-28zM731 1461h8v8h-8zM571 1471h8v8h-8zM591 1471h138v8h-138zM571 1481h78v8h-78zM661 1481h78v8h-78zM571 1491h58v8h-58zM641 1491h18v8h-18zM671 1491h58v8h-58zM741 1491h8v8h-8zM581 1501h38v8h-38zM631 1501h8v8h-8zM661 1501h8v8h-8zM681 1501h8v8h-8zM701 1501h18v8h-18zM731 1501h8v8h-8zM601 1511h8v8h-8zM691 1511h18v8h-18zM721 1511h8v8h-8zM591 1521h8v8h-8z" fill="white"/></svg></div></div>
 
-<div class="wrapper">
+<div class="shell">
 
-  <!-- EXPERIENCE -->
+  <nav class="crumb">
+    <a href="/">conicey</a><span class="sep">/</span><a href="/portfolio">portfolio</a><span class="sep">/</span><span class="here">development</span>
+  </nav>
+
+  <div class="page-head">
+    <h1 class="page-title">Development</h1>
+    <div class="page-sub">Web Development • Automation • Systems • Tools • High-Performance Code</div>
+  </div>
+
   <div class="box">
     <h2>Experience</h2>
-    <p>
-      Self-taught developer with an aggressive focus on efficiency, performance, and system design. 
-      I build production-grade web systems and automation tools that outperform typical hobby projects. 
-      My work prioritises scalability, clean architecture, and zero-bloat execution. I specialise in 
-      building systems that just work — fast, stable, and without unnecessary complexity.
-    </p>
-
-    <p style="margin-top:12px;"><b>Certifications & Achievements</b></p>
+    <p>Self-taught developer with an aggressive focus on efficiency, performance, and system design. I build production-grade web systems and automation tools that outperform typical hobby projects. My work prioritises scalability, clean architecture, and zero-bloat execution. I specialise in building systems that just work — fast, stable, and without unnecessary complexity.</p>
+    <p><b>Certifications &amp; Achievements</b></p>
     <ul>
       <li>Meta Front-End Developer Professional Certificate (HTML, CSS, JavaScript fundamentals).</li>
       <li>Google IT Automation with Python Certificate (automation scripting and workflow design).</li>
@@ -106,34 +225,29 @@
     </ul>
   </div>
 
-  <!-- TECH STACK -->
   <div class="box">
     <h2>Tech Stack</h2>
     <ul>
       <li><b>Languages:</b> JavaScript, TypeScript, Python, HTML5, CSS3, Bash</li>
-      <li><b>Frameworks & Libraries:</b> Node.js, Express, React, Discord.js, REST APIs</li>
-      <li><b>Web & Hosting:</b> GitHub Pages, Vercel, Cloudflare, Static Site Deployment</li>
+      <li><b>Frameworks &amp; Libraries:</b> Node.js, Express, React, Discord.js, REST APIs</li>
+      <li><b>Web &amp; Hosting:</b> GitHub Pages, Vercel, Cloudflare, Static Site Deployment</li>
       <li><b>Automation:</b> Webhooks, scheduled scripts, API pipelines, bot automation systems</li>
       <li><b>Tools:</b> Git, GitHub, VS Code, Chrome DevTools, Figma, CLI tooling</li>
       <li><b>Systems:</b> Linux environments, server architecture, permission systems, bot hosting</li>
     </ul>
   </div>
 
-  <!-- PROJECTS -->
   <div class="box">
     <h2>Projects</h2>
     <ul>
-      <li>Custom Discord automation bots for moderation, logging, and role management.
-      <li>Workflow automation scripts to manage server operations and repetitive admin tasks.
-      <li>Katthub script: https://kattdevv.github.io/Katt-Dev/contributors.html
+      <li>Custom Discord automation bots for moderation, logging, and role management.</li>
+      <li>Workflow automation scripts to manage server operations and repetitive admin tasks.</li>
+      <li>Katthub script: <a href="https://kattdevv.github.io/Katt-Dev/contributors.html" target="_blank">kattdevv.github.io/Katt-Dev/contributors.html</a></li>
     </ul>
   </div>
 
-</div>
+  <footer>&copy; conicey</footer>
 
-<div class="footer">
-  © conicey
 </div>
-
 </body>
 </html>
