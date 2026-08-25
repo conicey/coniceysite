@@ -4,137 +4,251 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conicey • Animation Portfolio</title>
-
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    padding: 40px 20px;
-    --bg: #252525;
-    background-color: var(--bg);
-    background-image: radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
-    background-size: 26px 26px;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    font-family: "Segoe UI", sans-serif;
-    color: #e0e0e0;
-    min-height: 100vh;
-  }
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
 
-  h1 {
-    text-align: center;
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -1px;
-    text-shadow: 0 0 12px rgba(0,0,0,0.7);
-    margin-bottom: 10px;
-  }
+:root {
+  --bg: #000000;
+  --ink: #f1f1ee;
+  --ink-dim: #8f8f95;
+  --ink-dimmer: #5c5c62;
+  --ink-faint: #333338;
+  --line: rgba(255,255,255,0.14);
+  --line-soft: rgba(255,255,255,0.07);
+  --line-strong: rgba(255,255,255,0.5);
+  --panel: rgba(4,4,4,0.9);
+}
 
-  p.sub {
-    text-align: center;
-    font-size: 1.05rem;
-    color: #b5b5b5;
-    margin-bottom: 35px;
-  }
+html { background: var(--bg); }
 
-  .wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
 
-  .box {
-    background: rgba(0,0,0,0.28);
-    padding: 22px 24px;
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 0 22px rgba(0,0,0,0.35);
-    line-height: 1.6;
-    font-size: 1.02rem;
-  }
+/* fixed ascii/dot-matrix art watermark (SVG, no font dependency) */
+.art-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.art-bg svg { opacity: 0.22; }
+.art-bg svg path { fill: #ffffff; }
 
-  .box h2 {
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #ffffff;
-  }
+/* vignette */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,255,255,0.05), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,0,0,0.65), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-  ul {
-    margin-left: 18px;
-  }
+/* scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
 
-  li {
-    margin-bottom: 7px;
-  }
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
 
-  .footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 0.85rem;
-    color: #777;
-  }
+/* breadcrumb nav */
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 34px;
+}
+.crumb a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.crumb a:hover { color: var(--ink); }
+.crumb span.sep { color: var(--ink-faint); }
+.crumb span.here { color: var(--ink-dimmer); }
+
+/* page heading */
+.page-head { margin-bottom: 36px; }
+.page-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  text-transform: uppercase;
+  display: inline-block;
+}
+.page-title::after {
+  content: '_';
+  color: var(--ink-dimmer);
+  animation: blink 1.4s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+
+.page-sub {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--ink-dimmer);
+  text-transform: uppercase;
+}
+
+/* generic section/box card - used across all subpages */
+.box {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-left: 2px solid var(--line-strong);
+  padding: 24px 26px;
+  margin-bottom: 16px;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  line-height: 1.7;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.box:hover {
+  border-left-color: #ffffff;
+  box-shadow: -4px 0 24px rgba(255,255,255,0.05);
+}
+.box h2 {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+.box h2::before { content: '// '; color: var(--ink-faint); }
+.box p { margin-bottom: 0; }
+.box p + p { margin-top: 12px; }
+.box b, .box strong { color: var(--ink); font-weight: 700; }
+.box ul { list-style: none; margin-top: 10px; }
+.box ul ul { margin-top: 8px; margin-left: 4px; }
+.box li {
+  padding-left: 15px;
+  position: relative;
+  margin-bottom: 9px;
+  color: var(--ink-dim);
+}
+.box li::before {
+  content: '\25B8';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  color: var(--ink-dimmer);
+  font-size: 9px;
+}
+.box, .box li, .box p { overflow-wrap: break-word; word-break: break-word; }
+.box a { color: #cfcfd4; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: break-word; word-break: break-word; }
+.box a:hover { color: var(--ink); }
+
+footer, .footer {
+  margin-top: 56px;
+  font-size: 9px;
+  color: var(--ink-faint);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: left;
+}
+footer a, .footer a {
+  color: var(--ink-dimmer);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+footer a:hover, .footer a:hover { color: var(--ink); }
+
+
+.page-head { text-align: left; margin-bottom: 40px; }
+
 </style>
 </head>
 <body>
 
-<h1>Animation</h1>
-<p class="sub">Character Animation • Motion Tests • Expressive Loops • Timing & Weight</p>
+<div class="art-bg" aria-hidden="true" style="--_s:min(66vw,78vh)"><div style="width:var(--_s);height:var(--_s)"><svg viewBox="0 0 1360 1440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><path d="M751 81h8v8h-8zM781 81h8v8h-8zM811 81h8v8h-8zM841 81h8v8h-8zM871 81h8v8h-8zM901 81h8v8h-8zM931 81h8v8h-8zM701 91h8v8h-8zM721 91h8v8h-8zM741 91h8v8h-8zM761 91h48v8h-48zM821 91h48v8h-48zM881 91h48v8h-48zM941 91h8v8h-8zM961 91h8v8h-8zM981 91h8v8h-8zM681 101h18v8h-18zM711 101h258v8h-258zM981 101h18v8h-18zM1011 101h8v8h-8zM641 111h8v8h-8zM661 111h18v8h-18zM691 111h318v8h-318zM1021 111h28v8h-28zM621 121h18v8h-18zM651 121h138v8h-138zM801 121h48v8h-48zM861 121h48v8h-48zM921 121h118v8h-118zM1051 121h28v8h-28zM1121 121h8v8h-8zM601 131h18v8h-18zM631 131h98v8h-98zM741 131h8v8h-8zM761 131h8v8h-8zM781 131h18v8h-18zM811 131h8v8h-8zM831 131h8v8h-8zM851 131h18v8h-18zM881 131h8v8h-8zM901 131h28v8h-28zM941 131h128v8h-128zM1081 131h28v8h-28zM1121 131h8v8h-8zM1141 131h8v8h-8zM581 141h18v8h-18zM611 141h88v8h-88zM711 141h8v8h-8zM731 141h8v8h-8zM751 141h8v8h-8zM801 141h8v8h-8zM841 141h8v8h-8zM881 141h8v8h-8zM931 141h8v8h-8zM951 141h8v8h-8zM971 141h8v8h-8zM991 141h98v8h-98zM1101 141h48v8h-48zM1161 141h8v8h-8zM561 151h18v8h-18zM591 151h78v8h-78zM681 151h8v8h-8zM701 151h8v8h-8zM971 151h8v8h-8zM991 151h8v8h-8zM1011 151h8v8h-8zM1031 151h128v8h-128zM541 161h18v8h-18zM571 161h78v8h-78zM661 161h18v8h-18zM1021 161h8v8h-8zM1051 161h108v8h-108zM1171 161h8v8h-8zM531 171h8v8h-8zM551 171h78v8h-78zM651 171h8v8h-8zM1041 171h8v8h-8zM1071 171h98v8h-98zM521 181h88v8h-88zM631 181h8v8h-8zM1071 181h8v8h-8zM1091 181h68v8h-68zM511 191h8v8h-8zM531 191h58v8h-58zM611 191h8v8h-8zM1081 191h8v8h-8zM1101 191h48v8h-48zM1161 191h8v8h-8zM491 201h68v8h-68zM571 201h8v8h-8zM1091 201h38v8h-38zM1141 201h8v8h-8zM481 211h8v8h-8zM501 211h38v8h-38zM551 211h8v8h-8zM1121 211h18v8h-18zM1151 211h8v8h-8zM471 221h48v8h-48zM531 221h8v8h-8zM1111 221h8v8h-8zM461 231h8v8h-8zM481 231h48v8h-48zM541 231h8v8h-8zM451 241h8v8h-8zM471 241h38v8h-38zM521 241h8v8h-8zM431 251h58v8h-58zM501 251h8v8h-8zM421 261h8v8h-8zM441 261h38v8h-38zM491 261h8v8h-8zM411 271h48v8h-48zM471 271h8v8h-8zM401 281h8v8h-8zM421 281h48v8h-48zM391 291h8v8h-8zM411 291h38v8h-38zM461 291h8v8h-8zM391 301h58v8h-58zM781 301h8v8h-8zM801 301h8v8h-8zM821 301h8v8h-8zM841 301h8v8h-8zM861 301h8v8h-8zM881 301h8v8h-8zM381 311h8v8h-8zM401 311h38v8h-38zM451 311h8v8h-8zM751 311h8v8h-8zM771 311h8v8h-8zM791 311h8v8h-8zM811 311h68v8h-68zM891 311h18v8h-18zM921 311h8v8h-8zM941 311h8v8h-8zM381 321h48v8h-48zM711 321h8v8h-8zM731 321h8v8h-8zM751 321h18v8h-18zM781 321h58v8h-58zM851 321h88v8h-88zM951 321h8v8h-8zM971 321h8v8h-8zM371 331h8v8h-8zM391 331h38v8h-38zM441 331h8v8h-8zM701 331h8v8h-8zM721 331h198v8h-198zM931 331h38v8h-38zM981 331h8v8h-8zM1001 331h8v8h-8zM361 341h8v8h-8zM381 341h38v8h-38zM681 341h8v8h-8zM701 341h48v8h-48zM761 341h238v8h-238zM1011 341h8v8h-8zM361 351h58v8h-58zM431 351h8v8h-8zM661 351h8v8h-8zM681 351h118v8h-118zM811 351h8v8h-8zM831 351h8v8h-8zM851 351h8v8h-8zM871 351h8v8h-8zM891 351h8v8h-8zM911 351h118v8h-118zM1041 351h8v8h-8zM351 361h8v8h-8zM371 361h38v8h-38zM641 361h8v8h-8zM661 361h58v8h-58zM731 361h28v8h-28zM771 361h8v8h-8zM791 361h8v8h-8zM821 361h8v8h-8zM861 361h8v8h-8zM891 361h18v8h-18zM921 361h88v8h-88zM1021 361h18v8h-18zM1061 361h8v8h-8zM351 371h48v8h-48zM411 371h8v8h-8zM621 371h8v8h-8zM641 371h48v8h-48zM701 371h28v8h-28zM741 371h8v8h-8zM771 371h8v8h-8zM951 371h8v8h-8zM971 371h88v8h-88zM1071 371h8v8h-8zM341 381h8v8h-8zM361 381h38v8h-38zM631 381h68v8h-68zM731 381h8v8h-8zM921 381h8v8h-8zM951 381h8v8h-8zM971 381h8v8h-8zM991 381h88v8h-88zM1091 381h8v8h-8zM341 391h48v8h-48zM401 391h8v8h-8zM611 391h48v8h-48zM671 391h18v8h-18zM701 391h8v8h-8zM1001 391h8v8h-8zM1021 391h68v8h-68zM331 401h8v8h-8zM351 401h38v8h-38zM591 401h8v8h-8zM611 401h8v8h-8zM631 401h48v8h-48zM691 401h8v8h-8zM1001 401h98v8h-98zM331 411h48v8h-48zM601 411h48v8h-48zM661 411h8v8h-8zM1041 411h8v8h-8zM1061 411h18v8h-18zM1091 411h28v8h-28zM331 421h48v8h-48zM391 421h8v8h-8zM581 421h48v8h-48zM641 421h8v8h-8zM1051 421h8v8h-8zM1071 421h38v8h-38zM1121 421h8v8h-8zM321 431h48v8h-48zM381 431h8v8h-8zM571 431h8v8h-8zM591 431h28v8h-28zM631 431h8v8h-8zM1071 431h8v8h-8zM1091 431h48v8h-48zM1151 431h8v8h-8zM321 441h8v8h-8zM341 441h28v8h-28zM561 441h8v8h-8zM581 441h28v8h-28zM621 441h8v8h-8zM1081 441h8v8h-8zM1101 441h48v8h-48zM311 451h58v8h-58zM561 451h48v8h-48zM1091 451h8v8h-8zM1111 451h58v8h-58zM311 461h8v8h-8zM331 461h28v8h-28zM371 461h8v8h-8zM551 461h48v8h-48zM611 461h8v8h-8zM1101 461h8v8h-8zM1121 461h28v8h-28zM1161 461h8v8h-8zM1181 461h8v8h-8zM311 471h48v8h-48zM541 471h8v8h-8zM561 471h28v8h-28zM1111 471h18v8h-18zM1141 471h38v8h-38zM301 481h48v8h-48zM361 481h8v8h-8zM541 481h38v8h-38zM591 481h8v8h-8zM1121 481h48v8h-48zM1181 481h8v8h-8zM301 491h8v8h-8zM321 491h38v8h-38zM531 491h8v8h-8zM551 491h38v8h-38zM1141 491h48v8h-48zM1201 491h8v8h-8zM301 501h38v8h-38zM531 501h38v8h-38zM1131 501h8v8h-8zM1151 501h48v8h-48zM291 511h8v8h-8zM311 511h48v8h-48zM521 511h8v8h-8zM541 511h48v8h-48zM811 511h8v8h-8zM831 511h8v8h-8zM851 511h8v8h-8zM1151 511h8v8h-8zM1171 511h28v8h-28zM1211 511h8v8h-8zM301 521h38v8h-38zM521 521h48v8h-48zM781 521h8v8h-8zM801 521h8v8h-8zM821 521h18v8h-18zM851 521h8v8h-8zM871 521h8v8h-8zM891 521h8v8h-8zM1151 521h58v8h-58zM291 531h8v8h-8zM311 531h38v8h-38zM521 531h8v8h-8zM541 531h28v8h-28zM751 531h8v8h-8zM771 531h8v8h-8zM791 531h88v8h-88zM891 531h8v8h-8zM911 531h8v8h-8zM1171 531h48v8h-48zM301 541h48v8h-48zM521 541h48v8h-48zM731 541h8v8h-8zM751 541h158v8h-158zM921 541h8v8h-8zM1161 541h68v8h-68zM301 551h48v8h-48zM511 551h8v8h-8zM531 551h28v8h-28zM571 551h8v8h-8zM741 551h18v8h-18zM771 551h168v8h-168zM951 551h8v8h-8zM1181 551h28v8h-28zM1221 551h8v8h-8zM1241 551h8v8h-8zM291 561h8v8h-8zM311 561h28v8h-28zM351 561h8v8h-8zM511 561h58v8h-58zM711 561h8v8h-8zM731 561h68v8h-68zM811 561h8v8h-8zM831 561h8v8h-8zM851 561h8v8h-8zM871 561h68v8h-68zM1171 561h8v8h-8zM1191 561h48v8h-48zM301 571h48v8h-48zM511 571h8v8h-8zM531 571h18v8h-18zM721 571h58v8h-58zM791 571h18v8h-18zM841 571h8v8h-8zM861 571h18v8h-18zM891 571h78v8h-78zM1181 571h48v8h-48zM1241 571h8v8h-8zM101 581h8v8h-8zM291 581h8v8h-8zM311 581h28v8h-28zM351 581h8v8h-8zM511 581h58v8h-58zM691 581h8v8h-8zM711 581h48v8h-48zM771 581h8v8h-8zM821 581h8v8h-8zM881 581h8v8h-8zM901 581h8v8h-8zM921 581h38v8h-38zM971 581h8v8h-8zM1201 581h38v8h-38zM71 591h28v8h-28zM121 591h8v8h-8zM301 591h48v8h-48zM501 591h8v8h-8zM521 591h38v8h-38zM701 591h38v8h-38zM751 591h8v8h-8zM781 591h8v8h-8zM911 591h8v8h-8zM931 591h58v8h-58zM1191 591h68v8h-68zM61 601h8v8h-8zM81 601h38v8h-38zM301 601h38v8h-38zM351 601h8v8h-8zM511 601h38v8h-38zM681 601h68v8h-68zM761 601h8v8h-8zM941 601h8v8h-8zM961 601h18v8h-18zM991 601h8v8h-8zM1211 601h38v8h-38zM51 611h78v8h-78zM291 611h8v8h-8zM311 611h38v8h-38zM501 611h8v8h-8zM521 611h48v8h-48zM701 611h38v8h-38zM751 611h8v8h-8zM941 611h58v8h-58zM1011 611h8v8h-8zM1201 611h58v8h-58zM51 621h8v8h-8zM71 621h68v8h-68zM301 621h38v8h-38zM351 621h8v8h-8zM511 621h48v8h-48zM681 621h68v8h-68zM761 621h8v8h-8zM781 621h8v8h-8zM961 621h48v8h-48zM1211 621h48v8h-48zM1271 621h8v8h-8zM51 631h78v8h-78zM141 631h8v8h-8zM291 631h8v8h-8zM311 631h38v8h-38zM521 631h38v8h-38zM571 631h8v8h-8zM691 631h88v8h-88zM791 631h8v8h-8zM971 631h18v8h-18zM1001 631h18v8h-18zM1211 631h8v8h-8zM1231 631h28v8h-28zM51 641h78v8h-78zM301 641h38v8h-38zM351 641h8v8h-8zM511 641h8v8h-8zM531 641h38v8h-38zM681 641h8v8h-8zM701 641h88v8h-88zM801 641h8v8h-8zM971 641h8v8h-8zM991 641h38v8h-38zM1041 641h8v8h-8zM1211 641h68v8h-68zM61 651h68v8h-68zM301 651h48v8h-48zM521 651h38v8h-38zM571 651h8v8h-8zM671 651h128v8h-128zM811 651h8v8h-8zM981 651h48v8h-48zM1221 651h8v8h-8zM1241 651h28v8h-28zM61 661h8v8h-8zM81 661h38v8h-38zM131 661h8v8h-8zM291 661h8v8h-8zM311 661h28v8h-28zM351 661h8v8h-8zM511 661h8v8h-8zM531 661h38v8h-38zM661 661h8v8h-8zM681 661h128v8h-128zM991 661h8v8h-8zM1011 661h38v8h-38zM1221 661h58v8h-58zM61 671h68v8h-68zM301 671h48v8h-48zM521 671h8v8h-8zM541 671h38v8h-38zM671 671h158v8h-158zM991 671h48v8h-48zM1231 671h38v8h-38zM1281 671h8v8h-8zM81 681h38v8h-38zM131 681h8v8h-8zM311 681h48v8h-48zM531 681h38v8h-38zM581 681h8v8h-8zM651 681h168v8h-168zM1001 681h48v8h-48zM1231 681h48v8h-48zM81 691h48v8h-48zM301 691h8v8h-8zM321 691h28v8h-28zM361 691h8v8h-8zM541 691h48v8h-48zM671 691h168v8h-168zM1001 691h8v8h-8zM1021 691h28v8h-28zM1061 691h8v8h-8zM1221 691h8v8h-8zM1241 691h48v8h-48zM71 701h8v8h-8zM91 701h38v8h-38zM311 701h48v8h-48zM531 701h8v8h-8zM551 701h38v8h-38zM601 701h8v8h-8zM651 701h178v8h-178zM841 701h8v8h-8zM1001 701h48v8h-48zM1231 701h8v8h-8zM1251 701h28v8h-28zM1291 701h8v8h-8zM81 711h48v8h-48zM141 711h8v8h-8zM311 711h48v8h-48zM371 711h8v8h-8zM551 711h48v8h-48zM661 711h178v8h-178zM1011 711h48v8h-48zM1241 711h48v8h-48zM81 721h58v8h-58zM321 721h48v8h-48zM561 721h8v8h-8zM581 721h48v8h-48zM641 721h8v8h-8zM661 721h8v8h-8zM681 721h178v8h-178zM1011 721h8v8h-8zM1031 721h28v8h-28zM1071 721h8v8h-8zM1231 721h8v8h-8zM1251 721h28v8h-28zM91 731h38v8h-38zM311 731h8v8h-8zM331 731h28v8h-28zM371 731h8v8h-8zM571 731h48v8h-48zM631 731h18v8h-18zM661 731h188v8h-188zM1011 731h48v8h-48zM1241 731h58v8h-58zM81 741h8v8h-8zM101 741h38v8h-38zM321 741h8v8h-8zM341 741h28v8h-28zM561 741h8v8h-8zM581 741h8v8h-8zM601 741h268v8h-268zM1021 741h48v8h-48zM1231 741h8v8h-8zM1251 741h38v8h-38zM91 751h48v8h-48zM151 751h8v8h-8zM331 751h58v8h-58zM591 751h208v8h-208zM811 751h8v8h-8zM831 751h28v8h-28zM1011 751h8v8h-8zM1031 751h28v8h-28zM1071 751h8v8h-8zM1241 751h48v8h-48zM1301 751h8v8h-8zM91 761h48v8h-48zM331 761h48v8h-48zM601 761h178v8h-178zM791 761h8v8h-8zM811 761h58v8h-58zM1021 761h48v8h-48zM1241 761h8v8h-8zM1261 761h38v8h-38zM101 771h58v8h-58zM341 771h58v8h-58zM621 771h8v8h-8zM641 771h38v8h-38zM691 771h8v8h-8zM711 771h58v8h-58zM781 771h8v8h-8zM821 771h38v8h-38zM871 771h8v8h-8zM1011 771h48v8h-48zM1071 771h8v8h-8zM1251 771h38v8h-38zM91 781h8v8h-8zM111 781h38v8h-38zM331 781h8v8h-8zM351 781h38v8h-38zM601 781h8v8h-8zM631 781h8v8h-8zM651 781h8v8h-8zM671 781h8v8h-8zM691 781h8v8h-8zM721 781h8v8h-8zM741 781h8v8h-8zM761 781h8v8h-8zM801 781h8v8h-8zM821 781h48v8h-48zM1021 781h48v8h-48zM1241 781h58v8h-58zM101 791h8v8h-8zM121 791h38v8h-38zM351 791h48v8h-48zM671 791h8v8h-8zM781 791h8v8h-8zM821 791h8v8h-8zM841 791h18v8h-18zM871 791h8v8h-8zM1011 791h8v8h-8zM1031 791h28v8h-28zM1251 791h48v8h-48zM111 801h38v8h-38zM161 801h8v8h-8zM341 801h8v8h-8zM361 801h28v8h-28zM401 801h8v8h-8zM741 801h8v8h-8zM821 801h48v8h-48zM1021 801h48v8h-48zM1251 801h28v8h-28zM1291 801h8v8h-8zM101 811h8v8h-8zM121 811h38v8h-38zM361 811h8v8h-8zM381 811h28v8h-28zM421 811h8v8h-8zM811 811h48v8h-48zM1011 811h8v8h-8zM1031 811h38v8h-38zM1241 811h8v8h-8zM1261 811h38v8h-38zM111 821h48v8h-48zM361 821h58v8h-58zM811 821h58v8h-58zM1021 821h38v8h-38zM1071 821h8v8h-8zM1251 821h48v8h-48zM111 831h58v8h-58zM381 831h58v8h-58zM801 831h8v8h-8zM821 831h28v8h-28zM1011 831h8v8h-8zM1031 831h38v8h-38zM1241 831h8v8h-8zM1261 831h28v8h-28zM1301 831h8v8h-8zM121 841h38v8h-38zM171 841h8v8h-8zM381 841h8v8h-8zM401 841h28v8h-28zM441 841h8v8h-8zM801 841h58v8h-58zM1021 841h38v8h-38zM1071 841h8v8h-8zM1241 841h58v8h-58zM111 851h8v8h-8zM131 851h38v8h-38zM181 851h8v8h-8zM381 851h58v8h-58zM451 851h8v8h-8zM791 851h48v8h-48zM861 851h8v8h-8zM1011 851h58v8h-58zM1241 851h48v8h-48zM1301 851h8v8h-8zM131 861h48v8h-48zM401 861h48v8h-48zM461 861h8v8h-8zM781 861h8v8h-8zM801 861h48v8h-48zM1021 861h38v8h-38zM1231 861h8v8h-8zM1251 861h38v8h-38zM121 871h8v8h-8zM141 871h48v8h-48zM411 871h8v8h-8zM431 871h38v8h-38zM781 871h38v8h-38zM831 871h8v8h-8zM1011 871h8v8h-8zM1031 871h38v8h-38zM1241 871h48v8h-48zM141 881h38v8h-38zM191 881h8v8h-8zM411 881h68v8h-68zM491 881h8v8h-8zM761 881h8v8h-8zM781 881h8v8h-8zM801 881h28v8h-28zM1011 881h48v8h-48zM1071 881h8v8h-8zM1231 881h8v8h-8zM1251 881h28v8h-28zM1291 881h8v8h-8zM131 891h8v8h-8zM151 891h38v8h-38zM201 891h8v8h-8zM441 891h18v8h-18zM471 891h38v8h-38zM521 891h8v8h-8zM741 891h8v8h-8zM761 891h48v8h-48zM1001 891h8v8h-8zM1021 891h38v8h-38zM1241 891h48v8h-48zM151 901h48v8h-48zM431 901h8v8h-8zM451 901h68v8h-68zM531 901h8v8h-8zM721 901h8v8h-8zM751 901h38v8h-38zM801 901h8v8h-8zM821 901h8v8h-8zM1001 901h48v8h-48zM1231 901h8v8h-8zM1251 901h28v8h-28zM1291 901h8v8h-8zM151 911h8v8h-8zM171 911h48v8h-48zM461 911h88v8h-88zM561 911h8v8h-8zM581 911h8v8h-8zM691 911h8v8h-8zM711 911h8v8h-8zM731 911h38v8h-38zM781 911h18v8h-18zM1001 911h38v8h-38zM1051 911h8v8h-8zM1231 911h58v8h-58zM161 921h48v8h-48zM221 921h8v8h-8zM471 921h8v8h-8zM491 921h78v8h-78zM581 921h8v8h-8zM601 921h8v8h-8zM621 921h8v8h-8zM641 921h8v8h-8zM661 921h8v8h-8zM681 921h8v8h-8zM701 921h88v8h-88zM991 921h8v8h-8zM1011 921h38v8h-38zM1231 921h8v8h-8zM1251 921h28v8h-28zM181 931h38v8h-38zM231 931h8v8h-8zM481 931h8v8h-8zM501 931h18v8h-18zM531 931h78v8h-78zM621 931h18v8h-18zM651 931h108v8h-108zM771 931h8v8h-8zM991 931h38v8h-38zM1041 931h8v8h-8zM1231 931h48v8h-48zM1291 931h8v8h-8zM171 941h58v8h-58zM491 941h8v8h-8zM511 941h228v8h-228zM751 941h8v8h-8zM981 941h8v8h-8zM1001 941h38v8h-38zM1221 941h58v8h-58zM191 951h48v8h-48zM541 951h8v8h-8zM561 951h148v8h-148zM721 951h18v8h-18zM751 951h8v8h-8zM981 951h38v8h-38zM1231 951h38v8h-38zM181 961h48v8h-48zM241 961h8v8h-8zM531 961h8v8h-8zM551 961h18v8h-18zM581 961h8v8h-8zM601 961h78v8h-78zM691 961h8v8h-8zM711 961h8v8h-8zM971 961h8v8h-8zM991 961h38v8h-38zM1041 961h8v8h-8zM1211 961h68v8h-68zM201 971h8v8h-8zM221 971h28v8h-28zM581 971h18v8h-18zM611 971h8v8h-8zM631 971h8v8h-8zM651 971h8v8h-8zM671 971h8v8h-8zM691 971h8v8h-8zM961 971h8v8h-8zM981 971h38v8h-38zM1221 971h28v8h-28zM1261 971h8v8h-8zM201 981h58v8h-58zM271 981h8v8h-8zM611 981h8v8h-8zM661 981h8v8h-8zM961 981h48v8h-48zM1021 981h8v8h-8zM1201 981h8v8h-8zM1221 981h38v8h-38zM1271 981h8v8h-8zM221 991h8v8h-8zM241 991h28v8h-28zM641 991h8v8h-8zM951 991h8v8h-8zM971 991h38v8h-38zM1201 991h58v8h-58zM231 1001h28v8h-28zM271 1001h8v8h-8zM941 1001h8v8h-8zM961 1001h38v8h-38zM1201 1001h8v8h-8zM1221 1001h28v8h-28zM1261 1001h8v8h-8zM231 1011h8v8h-8zM251 1011h48v8h-48zM941 1011h48v8h-48zM1001 1011h8v8h-8zM1191 1011h8v8h-8zM1211 1011h38v8h-38zM251 1021h38v8h-38zM301 1021h18v8h-18zM931 1021h8v8h-8zM951 1021h28v8h-28zM991 1021h8v8h-8zM1191 1021h58v8h-58zM1261 1021h8v8h-8zM261 1031h8v8h-8zM281 1031h28v8h-28zM321 1031h8v8h-8zM921 1031h8v8h-8zM941 1031h28v8h-28zM981 1031h8v8h-8zM1191 1031h48v8h-48zM261 1041h78v8h-78zM901 1041h8v8h-8zM921 1041h38v8h-38zM971 1041h8v8h-8zM1181 1041h8v8h-8zM1201 1041h28v8h-28zM1241 1041h8v8h-8zM281 1051h38v8h-38zM331 1051h18v8h-18zM901 1051h48v8h-48zM961 1051h8v8h-8zM1171 1051h8v8h-8zM1191 1051h48v8h-48zM281 1061h8v8h-8zM301 1061h58v8h-58zM371 1061h8v8h-8zM881 1061h8v8h-8zM901 1061h38v8h-38zM951 1061h8v8h-8zM1171 1061h48v8h-48zM291 1071h8v8h-8zM311 1071h58v8h-58zM381 1071h8v8h-8zM851 1071h8v8h-8zM871 1071h8v8h-8zM891 1071h48v8h-48zM1171 1071h8v8h-8zM1191 1071h38v8h-38zM301 1081h98v8h-98zM411 1081h8v8h-8zM841 1081h8v8h-8zM861 1081h58v8h-58zM931 1081h8v8h-8zM951 1081h8v8h-8zM1161 1081h48v8h-48zM1221 1081h8v8h-8zM321 1091h8v8h-8zM341 1091h58v8h-58zM821 1091h8v8h-8zM841 1091h8v8h-8zM861 1091h68v8h-68zM1151 1091h8v8h-8zM1171 1091h48v8h-48zM301 1101h8v8h-8zM331 1101h18v8h-18zM361 1101h78v8h-78zM801 1101h8v8h-8zM831 1101h68v8h-68zM911 1101h8v8h-8zM931 1101h8v8h-8zM1161 1101h38v8h-38zM351 1111h78v8h-78zM441 1111h18v8h-18zM471 1111h8v8h-8zM771 1111h8v8h-8zM791 1111h8v8h-8zM811 1111h78v8h-78zM901 1111h8v8h-8zM1141 1111h68v8h-68zM371 1121h8v8h-8zM391 1121h78v8h-78zM481 1121h18v8h-18zM751 1121h8v8h-8zM781 1121h8v8h-8zM801 1121h68v8h-68zM881 1121h8v8h-8zM1131 1121h8v8h-8zM1151 1121h38v8h-38zM1201 1121h8v8h-8zM371 1131h8v8h-8zM391 1131h118v8h-118zM521 1131h8v8h-8zM541 1131h8v8h-8zM561 1131h8v8h-8zM691 1131h8v8h-8zM711 1131h8v8h-8zM731 1131h8v8h-8zM751 1131h98v8h-98zM861 1131h8v8h-8zM891 1131h8v8h-8zM1121 1131h8v8h-8zM1141 1131h48v8h-48zM391 1141h8v8h-8zM411 1141h138v8h-138zM561 1141h8v8h-8zM581 1141h8v8h-8zM601 1141h8v8h-8zM621 1141h8v8h-8zM641 1141h8v8h-8zM661 1141h8v8h-8zM681 1141h8v8h-8zM701 1141h28v8h-28zM741 1141h88v8h-88zM841 1141h18v8h-18zM1121 1141h8v8h-8zM1141 1141h18v8h-18zM1171 1141h8v8h-8zM1191 1141h8v8h-8zM431 1151h8v8h-8zM451 1151h78v8h-78zM541 1151h58v8h-58zM611 1151h48v8h-48zM671 1151h138v8h-138zM821 1151h18v8h-18zM1111 1151h8v8h-8zM1131 1151h48v8h-48zM411 1161h8v8h-8zM431 1161h8v8h-8zM451 1161h8v8h-8zM471 1161h18v8h-18zM501 1161h138v8h-138zM651 1161h128v8h-128zM791 1161h18v8h-18zM821 1161h8v8h-8zM1101 1161h8v8h-8zM1121 1161h38v8h-38zM1171 1161h8v8h-8zM451 1171h8v8h-8zM481 1171h258v8h-258zM751 1171h8v8h-8zM771 1171h8v8h-8zM791 1171h8v8h-8zM1101 1171h58v8h-58zM501 1181h8v8h-8zM521 1181h8v8h-8zM541 1181h158v8h-158zM711 1181h8v8h-8zM731 1181h18v8h-18zM761 1181h8v8h-8zM1091 1181h8v8h-8zM1111 1181h28v8h-28zM1151 1181h8v8h-8zM531 1191h8v8h-8zM571 1191h8v8h-8zM591 1191h8v8h-8zM611 1191h8v8h-8zM631 1191h8v8h-8zM651 1191h8v8h-8zM671 1191h8v8h-8zM691 1191h8v8h-8zM1071 1191h8v8h-8zM1091 1191h38v8h-38zM1141 1191h8v8h-8zM641 1201h8v8h-8zM671 1201h8v8h-8zM711 1201h8v8h-8zM1071 1201h38v8h-38zM1121 1201h8v8h-8zM571 1211h8v8h-8zM611 1211h8v8h-8zM1051 1211h8v8h-8zM1071 1211h48v8h-48zM1051 1221h28v8h-28zM1091 1221h18v8h-18zM1121 1221h8v8h-8zM1031 1231h8v8h-8zM1051 1231h48v8h-48zM1111 1231h8v8h-8zM991 1241h8v8h-8zM1011 1241h8v8h-8zM1031 1241h58v8h-58zM1101 1241h8v8h-8zM971 1251h8v8h-8zM991 1251h8v8h-8zM1011 1251h58v8h-58zM1081 1251h8v8h-8zM971 1261h78v8h-78zM1061 1261h18v8h-18zM1091 1261h8v8h-8zM961 1271h8v8h-8zM981 1271h78v8h-78zM951 1281h8v8h-8zM971 1281h78v8h-78zM1061 1281h8v8h-8zM961 1291h78v8h-78zM1051 1291h8v8h-8zM961 1301h78v8h-78zM971 1311h58v8h-58zM1041 1311h8v8h-8zM961 1321h8v8h-8zM981 1321h8v8h-8zM1001 1321h18v8h-18zM1031 1321h8v8h-8zM991 1331h8v8h-8zM1011 1331h8v8h-8zM991 1341h8v8h-8zM1031 1341h8v8h-8z" fill="white"/></svg></div></div>
 
-<div class="wrapper">
+<div class="shell">
 
-  <!-- EXPERIENCE -->
+  <nav class="crumb">
+    <a href="/">conicey</a><span class="sep">/</span><a href="/portfolio">portfolio</a><span class="sep">/</span><span class="here">animation</span>
+  </nav>
+
+  <div class="page-head">
+    <h1 class="page-title">Animation</h1>
+    <div class="page-sub">Character Animation • Motion Tests • Expressive Loops • Timing &amp; Weight</div>
+  </div>
+
   <div class="box">
     <h2>Experience</h2>
-    <p>
-      Self-taught animator with a strong focus on expressive character motion, timing, and polish. 
-      I create animation that prioritises readability, personality, and impact rather than stiff or 
-      generic movement. My work focuses on smooth transitions, believable weight, and clear emotional 
-      communication through motion.
-    </p>
-
-    <p style="margin-top:12px;"><b>Certifications & Achievements</b></p>
+    <p>Self-taught animator with a strong focus on expressive character motion, timing, and polish. I create animation that prioritises readability, personality, and impact rather than stiff or generic movement. My work focuses on smooth transitions, believable weight, and clear emotional communication through motion.</p>
+    <p><b>Certifications &amp; Achievements</b></p>
     <ul>
-      <li>Adobe Certified Professional (ACP) in Multiplatform Animation Using Adobe Animate  
-      <li>Adobe Certified Professional in After Effects  
-      <li>Autodesk Certified User / Professional in Maya  
-      <li>CalArts Game Design and Development Specialization (Coursera certificate)  
-      <li>Google UX Design Professional Certificate (includes animation/micro-interaction modules)  
+      <li>Adobe Certified Professional (ACP) in Multiplatform Animation Using Adobe Animate</li>
+      <li>Adobe Certified Professional in After Effects</li>
+      <li>Autodesk Certified User / Professional in Maya</li>
+      <li>CalArts Game Design and Development Specialization (Coursera certificate)</li>
+      <li>Google UX Design Professional Certificate (includes animation/micro-interaction modules)</li>
     </ul>
   </div>
 
-  <!-- TECH STACK -->
   <div class="box">
     <h2>Tech Stack</h2>
     <ul>
       <li><b>Software:</b> Roblox Studio Animation Editor, Blender (rig testing), Adobe After Effects (post)</li>
-      <li><b>Techniques:</b> Keyframe animation, easing curves, anticipation & follow-through, squash & stretch</li>
+      <li><b>Techniques:</b> Keyframe animation, easing curves, anticipation &amp; follow-through, squash &amp; stretch</li>
       <li><b>Workflow:</b> Loop-friendly motion design, modular animation clips, rig-based character systems</li>
       <li><b>Formats:</b> Game-ready loops, short-form motion clips, test reels, experimental motion studies</li>
       <li><b>Tools:</b> Timeline editors, curve editors, frame-by-frame refinement, preview pipelines</li>
     </ul>
   </div>
 
-  <!-- PROJECTS -->
   <div class="box">
     <h2>Projects</h2>
     <ul>
-      <li>Character animation: movements, expressions, walks, emotes  
-      <li>UI/UX motion: buttons, transitions, hovers, loading screens  
-      <li>Motion graphics: logos, text pops, ads, explainers  
-      <li>Game animations: combat, particles, trails, cutscenes (Roblox focus)  
-      <li>Effects: sparks, fire, magic, weather, environmental stuff  
-      <li>Timing & polish: keyframes, easing, audio sync
+      <li>Character animation: movements, expressions, walks, emotes</li>
+      <li>UI/UX motion: buttons, transitions, hovers, loading screens</li>
+      <li>Motion graphics: logos, text pops, ads, explainers</li>
+      <li>Game animations: combat, particles, trails, cutscenes (Roblox focus)</li>
+      <li>Effects: sparks, fire, magic, weather, environmental stuff</li>
+      <li>Timing &amp; polish: keyframes, easing, audio sync</li>
     </ul>
   </div>
 
-</div>
+  <footer>&copy; conicey</footer>
 
-<div class="footer">
-  © conicey
 </div>
-
 </body>
 </html>
