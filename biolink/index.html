@@ -4,16 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>conicey luv</title>
-
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
 <style>
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
-
 :root {
   --bg: #000000;
   --ink: #f1f1ee;
@@ -25,9 +20,7 @@
   --line-strong: rgba(255,255,255,0.5);
   --panel: rgba(4,4,4,0.9);
 }
-
 html { background: var(--bg); }
-
 body {
   background: var(--bg);
   color: var(--ink);
@@ -36,7 +29,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
 /* fixed ascii/dot-matrix art watermark (SVG, no font dependency) */
 .art-bg {
   position: fixed;
@@ -53,13 +45,12 @@ body {
   opacity: 0.2;
   color: #ffffff;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
-  font-size: clamp(10px, 2.4vw, 26px);
-  line-height: 1.15;
+  font-size: clamp(6px, 1.1vw, 14px);
+  line-height: 1.05;
   white-space: pre;
   text-align: center;
   letter-spacing: 0;
 }
-
 /* vignette */
 body::before {
   content: '';
@@ -71,7 +62,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-
 /* scanlines */
 body::after {
   content: '';
@@ -84,7 +74,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-
 .shell {
   position: relative;
   z-index: 1;
@@ -92,7 +81,6 @@ body::after {
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
-
 /* breadcrumb nav */
 .crumb {
   display: flex;
@@ -112,7 +100,6 @@ body::after {
 .crumb a:hover { color: var(--ink); }
 .crumb span.sep { color: var(--ink-faint); }
 .crumb span.here { color: var(--ink-dimmer); }
-
 /* page heading */
 .page-head { margin-bottom: 36px; }
 .page-title {
@@ -129,7 +116,6 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-
 .page-sub {
   margin-top: 10px;
   font-size: 11px;
@@ -137,7 +123,6 @@ body::after {
   color: var(--ink-dimmer);
   text-transform: uppercase;
 }
-
 /* generic section/box card - used across all subpages */
 .box {
   background: var(--panel);
@@ -186,7 +171,6 @@ body::after {
 .box, .box li, .box p { overflow-wrap: break-word; word-break: break-word; }
 .box a { color: #cfcfd4; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: break-word; word-break: break-word; }
 .box a:hover { color: var(--ink); }
-
 footer, .footer {
   margin-top: 56px;
   font-size: 9px;
@@ -201,12 +185,8 @@ footer a, .footer a {
   text-underline-offset: 2px;
 }
 footer a:hover, .footer a:hover { color: var(--ink); }
-
-
 body { display: flex; flex-direction: column; align-items: center; text-align: center; }
-
 .shell { max-width: 460px; display: flex; flex-direction: column; align-items: center; padding-top: 64px; }
-
 img.logo {
   width: 300px;
   max-width: 78%;
@@ -216,7 +196,6 @@ img.logo {
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 img.logo:hover { transform: scale(1.04); }
-
 .content {
   display: flex;
   flex-direction: column;
@@ -225,7 +204,6 @@ img.logo:hover { transform: scale(1.04); }
   width: 100%;
   max-width: 380px;
 }
-
 a.social, .biolink-btn {
   position: relative;
   width: 100%;
@@ -244,7 +222,6 @@ a.social, .biolink-btn {
   cursor: pointer;
   display: block;
 }
-
 a.social::before, .biolink-btn::before {
   content: '';
   position: absolute;
@@ -260,14 +237,12 @@ a.social::before, .biolink-btn::before {
   transform: skewX(-25deg);
 }
 a.social:hover::before, .biolink-btn:hover::before { left: 125%; transition: left 0.7s ease-in-out; }
-
 a.social:hover, .biolink-btn:hover {
   color: var(--ink);
   border-left-color: #ffffff;
   background: #0b0b0b;
   box-shadow: -4px 0 20px rgba(255,255,255,0.05);
 }
-
 footer {
   margin-top: 44px;
   font-size: 9px;
@@ -277,10 +252,8 @@ footer {
 }
 footer a { color: var(--ink-faint); text-decoration: underline; text-underline-offset: 2px; }
 footer a:hover { color: var(--ink-dim); }
-
 /* BIOLINK POP OUT */
 .biolink-container { position: relative; width: 100%; }
-
 .popout-menu {
   position: absolute;
   top: 0;
@@ -299,7 +272,6 @@ footer a:hover { color: var(--ink-dim); }
   z-index: 2;
   text-align: left;
 }
-
 .popout-menu a {
   color: #b8b8bc;
   text-decoration: none;
@@ -308,7 +280,6 @@ footer a:hover { color: var(--ink-dim); }
   transition: color 0.2s ease;
 }
 .popout-menu a:hover { color: #fff; }
-
 @media (max-width: 500px) {
   .popout-menu {
     position: relative;
@@ -328,49 +299,66 @@ footer a:hover { color: var(--ink-dim); }
     transform: translateY(0);
   }
 }
-
 </style>
 </head>
 <body>
-
-<div class="art-bg" aria-hidden="true"><pre>⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⢦⡀⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢻⣶⣾⣿⣤⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⢰⡷⠀⠀⣻⡿⣿⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⣰⣿⠿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⢀⠜⠋⠀⠀⠈⢻⡀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠡⡀⠀⠀⠀⠀⠀⠀⠛⠃⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷⡀⠀⠀⢀⡴⠂⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣲⣾⠋⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣀⡴⠿⢿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠈⠑⠂⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠙⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢰⡀⠀⠀⢀⡤⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⣀⣀⣀⣀⣸⣿⣶⣾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠈⠙⠛⢿⣿⣿⣧⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣸⠟⠛⠛⠷⣄⠀⠛⠃⠀⠀⠀⠀⢀⠄⠀⠀⠀
-⠀⠀⠀⡐⠁⠀⠀⠀⠀⠀⠑⢦⡀⠀⠀⠀⢀⡾⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣷⣦⣶⣿⣧⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣷⣤⣀⡀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠿⠛⠛⠛⢿⣯⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⠉⠀⠀⠀⠀⠀⠀⠙⢦⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠃⠀⠀⠀</pre></div>
-
+<div class="art-bg" aria-hidden="true"><pre>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠰⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠈⡄⠀⠀⠀⡔⠂⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠂⠀⠀⠐⠈⠀⠀⠄⠀⠀⠠⠴⠤⣴⣆⠴⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠐⠀⠀⠀⠀⠀⠀⢑⠖⢀⡀⠀⠀⠀⠀⠀⠉⠑⠋⠁⠲⢶⣶⠂⠰⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠦⣀⢀⣁⣀⣤⡴⡿⣋⡴⣄⡠⠰⠖⡤⣄⣠⢀⡀⠀⡀⣠⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⡤⠄⠀⠀⠀⢀⠀⡀⠀⠀⠀⠈⠁⠀⠀⣀⣘⢀⣶⣶⢿⣛⠛⠋⠋⣉⠒⣂⠔⣭⢥⡙⠒⠀⡝⡷⢊⢋⠀⠌⡰⠓⣺⣻⡅⠀⡘⠉⠀⠄⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠦⠌⠃⠀⠀⣄⠀⠀⠘⣟⠀⡂⠀⠈⣠⡤⡶⠛⢫⠜⢋⠀⠂⠦⠑⢀⢠⢨⠖⣠⣩⠦⡹⢴⢺⣂⡄⢉⠩⠐⠀⠐⠠⢁⠀⠀⠀⠀⠠⠜⠀⠀⣀⣰⠤⣐⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⢀⡀⠁⣰⡀⠉⢿⠆⢀⣀⡠⣿⠝⣲⢛⠴⡲⣿⣷⣽⣼⡴⢦⣦⣤⣶⡴⣭⢏⡭⣐⢬⠰⢣⠬⣍⢣⠽⣙⣈⠀⠀⠄⠀⠀⢠⠀⠤⠁⠀⠀⡀⠀⠈⠘⠠⠀⢀⡀⠠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠐⠦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⢀⣂⡨⠅⡤⡘⠄⠋⢐⠈⡐⣿⣿⣆⢠⠣⠌⣹⠶⢧⣻⢿⣿⠿⠬⡽⣿⣟⢿⣿⣯⣞⣶⣜⣀⡑⡫⢶⠌⠣⠎⠱⡌⢆⢃⠆⠁⠠⢃⡈⠠⢀⠈⠒⠠⠄⠒⠀⠀⠀⠀⠀⠀⠉⠒⠉⠐⢍⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠈⠁⠀⠀⢘⡘⠖⢾⣤⣼⡳⠈⠁⠀⢘⠻⢿⣷⠋⡐⠃⠀⣨⣅⢌⡓⣦⣩⢍⣶⣬⣽⣴⣿⣿⠿⢯⢷⢂⣁⡉⠐⠢⣒⣄⠘⠔⠪⢌⡘⠐⢢⠀⠄⢃⠢⠘⡀⠂⠄⠂⠄⠀⠀⠠⠀⠀⠀⠀⠀⠈⠀⠂⠁⠐⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣄⡀⠀⠀⠀⡄⢐⡐⢆⣔⡻⢿⣫⣌⠈⡁⠡⣹⣷⢨⡀⣶⣄⠀⣿⠿⡐⣷⣷⣿⣿⣿⡿⢛⣩⣶⣶⣿⣿⣿⣷⣶⣾⣽⣓⡢⠌⠁⠈⡀⢄⠈⢁⠂⠅⡊⠄⡁⠆⢡⢉⠠⠡⠌⡀⠒⡀⡀⠀⢀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠑⠂⠄⠀⢀⣐⠾⠇⣙⣦⠹⣿⣿⠇⡀⣴⣿⢻⠁⢥⠀⢛⣚⠀⣧⡙⣽⣿⣿⣟⡟⣼⣿⣿⣿⡿⣹⣿⣿⣿⣽⣿⣻⣿⣿⣶⣆⡠⠀⠉⠓⣤⡔⠄⡀⠐⠀⠀⠂⠤⢁⠂⡐⢀⠂⠄⠀⠀⠀⠈⠈⠛⠰⠤⠀⠀⠀⠐⠀⠀⣡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠘⠌⢨⢴⣮⡛⣧⣍⠖⣽⣾⣿⣷⢉⡣⢈⡈⢘⠻⣠⠁⣧⢻⣿⣿⣻⣃⣿⣿⣿⣰⣿⡿⢟⣛⣛⣻⠻⣿⣿⣿⣽⣿⣿⣟⣦⣐⠶⢴⣻⡴⠆⡀⠧⢉⠆⠠⠁⠄⢂⠐⠈⠠⠀⠀⠂⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠁⡀⠣⠱⣙⣌⢿⡆⣙⠾⣶⡽⣷⡹⡆⡨⣌⠳⣽⣟⢬⡂⢻⣿⣿⣘⣿⣿⣧⣾⣿⣰⣿⣿⣿⣿⣿⣷⣶⣮⡻⣿⣿⣿⣿⣿⣶⣦⣬⢶⡌⣅⣐⠃⢂⠤⢁⠌⠠⠈⠀⠐⠀⡁⠄⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠐⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡄⡀⠀⠀⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠣⠩⣭⣎⡻⣿⣾⣄⢽⣿⣷⣁⠀⡨⣝⠞⣿⡟⢻⣿⣿⣿⣿⡘⣿⣿⣿⢱⣿⣿⣿⣿⣭⣽⣻⢿⣿⣿⣶⣉⢻⣿⣛⢿⣿⣿⣷⣦⣬⡉⢙⠲⡀⠁⠠⠀⠀⠀⠀⠀⠄⠀⠂⢀⠠⠀⠀⠀⠁⠀⠠⠄⡀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠈⠳⠤⢽⣻⣮⢿⣻⢦⡑⢾⣿⣦⠙⠲⣶⣽⣿⣏⣿⣿⣾⣿⣿⡘⣿⣿⣜⣿⣿⠛⠛⠛⠛⠿⣷⣟⢻⣿⣿⣿⣾⣝⣻⣿⣻⣿⣿⣿⣟⢦⣉⠘⠝⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠂⡈⠀⠀⠓⠒⠒⢿⣯⠭⡳⠍⠀⠘⢻⣗⡂⠛⢿⣿⣿⡿⣿⣿⠾⣿⣿⣶⡙⣿⣿⡟⠀⠀⠀⠀⠀⠀⠈⠹⣿⣿⣿⣿⣿⣿⣷⣶⡹⢿⣿⣿⣷⣜⠷⣀⠙⢷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠰⠀⢉⠈⡾⣀⣈⠹⢷⣆⠈⠀⢿⣿⣿⡀⠀⡉⢏⣿⣎⢿⣿⣶⣛⣿⣿⣶⣬⣝⡢⠀⠀⠀⠀⠀⠀⠀⠸⣿⣷⣦⣙⢿⣿⣟⣿⣿⣽⢻⣿⣿⣷⠉⣷⡀⠆⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠒⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠂⠨⠙⠶⡩⣕⠦⢄⠰⣎⠀⠀⡉⠛⢿⣷⡄⢴⣌⣻⣷⣝⠿⣿⣶⣽⢻⣿⣿⣿⣷⣦⣄⣀⠀⠀⠀⣸⣿⣿⣿⣿⡜⢿⣿⣿⣿⣿⡹⣿⣿⣿⣷⡄⠐⣄⠙⠆⣢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠴⠀⠀⠀⠀⠀⠂⠁⠀⠂⢀⠀⠄⠘⠲⢷⣇⠓⠠⢂⠻⡔⠦⠀⠙⢿⣷⣠⣙⠿⣿⣿⣿⣛⢿⢿⣿⣿⣾⣿⣾⣿⣿⣿⠿⣿⣿⣿⣿⣿⣿⣷⢹⣿⣿⣿⣿⣖⣿⣿⣻⣿⣧⠛⠤⠡⡈⠻⣿⣷⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⡀⠀⠂⠀⡀⠀⠀⠀⠀⠀⠀⠂⠄⠠⠀⠹⡟⢞⢮⡀⢁⡀⢛⡰⢌⠋⠽⣿⣷⣝⣿⣿⣿⣿⣷⣶⣭⣙⣛⣛⣛⣫⣶⣾⣿⣿⣿⡇⣿⣿⣽⣷⢹⣿⡿⣿⡟⢻⣿⣿⣿⣿⠟⣨⠇⠁⠀⠈⢹⣷⣀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⢨⣁⠀⡀⠀⠁⠀⠀⠀⠀⠁⡀⠘⠂⠄⠽⠢⣒⣣⢉⢎⡂⠑⣀⡐⢿⠳⣾⣭⣛⣿⠿⣿⣿⣿⣿⣿⣿⣿⡿⢛⣛⣭⣾⣿⣿⣻⣿⢺⣿⡧⣿⣿⡾⣿⣾⣿⣿⣧⡹⡅⢓⠀⡀⠈⠿⢿⣆⡀⠀⠀⠤⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠤⠀⡉⠂⣀⠀⠠⠀⠠⠀⠀⠀⠀⠀⠈⠠⡁⠔⢚⠩⠂⢀⠆⡁⠦⡙⠆⢢⣙⠷⣿⣿⣿⣶⣝⡻⢿⣷⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⡿⣸⣿⡧⣿⣿⣧⣿⣿⣼⣿⣝⣅⡈⠦⠁⠀⠐⠩⣌⣿⣷⠀⠀⠄⠁⡈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠃⠠⡄⢀⠀⠀⠀⠀⠀⠡⡐⠂⠈⠐⡈⠄⠂⡉⢖⡩⢓⡢⡑⢦⠈⠹⣿⣿⣛⣿⣷⣴⣬⣭⣭⣙⣛⣛⣛⣛⣹⣭⣴⣾⣿⢏⣾⣿⣿⣽⣿⣿⣿⡆⢍⢧⠳⣈⠐⠀⠀⠘⣿⡻⢵⡐⡤⠒⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠙⠈⠀⠄⠀⠀⡀⠐⠀⠄⠀⠁⠀⠐⠂⠬⢐⡓⣂⣃⠐⢢⠄⣢⢉⠒⠾⠿⢽⣭⣭⣿⣿⣿⣿⣿⣿⢿⣿⣟⣻⢟⣛⣼⣿⣿⣿⢿⣿⣿⡋⠝⡘⡇⠀⠹⠀⣐⢂⠀⠸⣯⠐⡟⢔⢦⡀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⣐⢢⡒⠀⠀⡀⠉⢐⡂⠀⡄⠈⠀⠀⠀⠀⠀⡁⡈⢀⠡⠀⠦⠍⢦͊⡴⢏⢶⡲⠦⣉⡉⠩⠯⣝⣭⡮⠕⠻⡿⠿⠿⣿⣿⣿⣿⡻⢛⣵⡿⠍⢊⡼⠓⠁⠡⠀⠐⢠⠀⠈⠀⢴⣟⡳⠈⠀⠘⢺⣃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠈⠀⠀⠈⢚⠰⠄⠀⢀⠀⠀⠀⠀⠀⠐⠀⡈⠀⠈⡉⢊⡉⢏⡝⣂⡥⡍⡝⡺⡊⢈⣣⠾⣫⡘⢳⣌⣁⣬⡌⡩⠤⠐⣈⠬⢕⡾⠁⠀⠀⠃⠀⠈⠍⠐⡒⠀⠀⢹⣶⡅⢿⢢⠢⠠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠐⢶⠖⡂⡉⠤⣴⡏⠀⠀⡀⠀⠀⠀⡀⠀⠀⠈⡉⣓⡻⣷⢿⣬⣡⡶⡴⣒⣘⠒⢶⣾⣿⠌⠛⣩⣅⢁⡐⡛⠉⠞⠁⠀⢀⡀⡴⠄⠀⠈⠀⠒⢄⡙⢽⣿⣿⡣⣤⡔⢆⡀⠀⡠⠀⠀⠀⡈⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠩⠉⠐⢫⡐⠿⣶⢓⣨⣄⢀⠡⡄⣂⠠⠠⡠⢹⠦⣒⢆⡶⣢⠍⡻⠓⡊⡠⠀⡡⠹⣄⠀⡀⢀⡄⠀⠂⠀⠂⠠⢀⡠⠐⠃⡠⢒⠀⠪⣜⣻⡟⠿⣿⡇⠑⡎⠐⠈⢁⠀⠀⠀⠀⠀⢐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠈⠐⠙⣩⢏⣭⣶⢿⣦⡳⣔⣾⢏⣀⢚⡋⢀⠴⠖⣂⣅⢄⠎⣀⡠⣌⢉⠠⡤⣤⢀⢂⣄⢧⠐⢊⡁⡠⣤⣄⠂⠉⣀⣶⡇⢐⠬⡙⠂⠀⡐⡁⠀⠂⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠃⠉⠠⠁⠻⠣⢙⡃⢾⢿⣿⣿⣿⣿⡿⠟⠋⠩⠄⢤⠂⠩⠘⠓⠈⠐⠁⠘⢏⠁⠀⠀⢠⠐⠦⣩⠴⠁⢾⠏⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠈⠙⠀⠄⠀⠀⠀⠀⠄⠒⠫⠙⠃⠤⠠⠄⠁⠠⠁⠀⠀⠜⠈⠀⠈⠈⠻⠉⠀⠀⠘⠀⠠⠀⠀⠠⠈⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠆⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠲⠀⠂⠀⠁⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre></div>
 <div class="shell">
-
 <img src="/biolink/banner.png" alt="conicey" class="logo">
-
 <div class="content">
   <div class="biolink-container">
     <a class="biolink-btn" id="biolinkBtn">biolink</a>
-
     <div class="popout-menu" id="biolinkMenu">
       <a href="https://haunt.gg/christmas" target="_blank">haunt.gg/christmas</a>
       <a href="https://guns.lol/conicey" target="_blank">guns.lol/conicey</a>
     </div>
   </div>
-
   <a href="https://discord.com/users/920912709862703115" class="social" target="_blank">discord</a>
   <a href="https://www.roblox.com/users/3754010089/profile" class="social" target="_blank">roblox</a>
   <a href="https://www.twitch.tv/coniceyyy" class="social" target="_blank">twitch</a>
@@ -380,42 +368,34 @@ footer a:hover { color: var(--ink-dim); }
   <a href="https://www.tiktok.com/@conicey.net" class="social" target="_blank">tiktok</a>
   <a href="https://www.instagram.com/conicey_" class="social" target="_blank">instagram</a>
 </div>
-
 <footer><a href="/">// conicey.com</a></footer>
-
 </div>
-
 <script>
 const biolinkBtn = document.getElementById('biolinkBtn');
 const biolinkMenu = document.getElementById('biolinkMenu');
 let hideTimeout;
-
 function showMenu() {
   clearTimeout(hideTimeout);
   biolinkMenu.style.opacity = '1';
   biolinkMenu.style.pointerEvents = 'auto';
 }
-
 function hideMenu() {
   hideTimeout = setTimeout(() => {
     biolinkMenu.style.opacity = '0';
     biolinkMenu.style.pointerEvents = 'none';
   }, 200);
 }
-
 if (window.innerWidth > 500) {
   biolinkBtn.addEventListener('mouseenter', showMenu);
   biolinkBtn.addEventListener('mouseleave', hideMenu);
   biolinkMenu.addEventListener('mouseenter', showMenu);
   biolinkMenu.addEventListener('mouseleave', hideMenu);
 }
-
 biolinkBtn.addEventListener('click', () => {
   if(window.innerWidth <= 500){
     biolinkMenu.classList.toggle('show');
   }
 });
-
 document.addEventListener('click', (e) => {
   if(window.innerWidth <= 500){
     if(!biolinkBtn.contains(e.target) && !biolinkMenu.contains(e.target)){
@@ -424,6 +404,5 @@ document.addEventListener('click', (e) => {
   }
 });
 </script>
-
 </body>
 </html>
