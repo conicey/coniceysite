@@ -6,11 +6,8 @@
 <title>Active Developer Badge • conicey</title>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <style>
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
-
 :root {
   --bg: #000000;
   --ink: #f1f1ee;
@@ -22,9 +19,7 @@
   --line-strong: rgba(255,255,255,0.5);
   --panel: rgba(4,4,4,0.9);
 }
-
 html { background: var(--bg); }
-
 body {
   background: var(--bg);
   color: var(--ink);
@@ -33,30 +28,39 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
-/* fixed ascii-art watermark */
+/* fixed ascii-art watermarks */
 .art-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
   pointer-events: none;
   user-select: none;
+  overflow: hidden;
 }
 .art-bg pre {
   opacity: 0.22;
   color: #ffffff;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
-  font-size: clamp(9px, 1.6vw, 20px);
-  line-height: 1.15;
   white-space: pre;
-  text-align: center;
   letter-spacing: 0;
+  margin: 0;
 }
-
+.art-star {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: clamp(8px, 1.4vw, 16px);
+  line-height: 1.1;
+  text-align: left;
+}
+.art-blackhole {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  font-size: clamp(6px, 1.1vw, 13px);
+  line-height: 1.05;
+  text-align: right;
+}
 /* vignette */
 body::before {
   content: '';
@@ -68,7 +72,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-
 /* scanlines */
 body::after {
   content: '';
@@ -81,7 +84,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-
 .shell {
   position: relative;
   z-index: 1;
@@ -89,7 +91,6 @@ body::after {
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
-
 /* breadcrumb nav */
 .crumb {
   display: flex;
@@ -109,7 +110,6 @@ body::after {
 .crumb a:hover { color: var(--ink); }
 .crumb span.sep { color: var(--ink-faint); }
 .crumb span.here { color: var(--ink-dimmer); }
-
 /* page heading */
 .page-head { margin-bottom: 36px; }
 .page-title {
@@ -120,7 +120,6 @@ body::after {
   text-transform: uppercase;
   display: inline-block;
 }
-
 .page-sub {
   margin-top: 10px;
   font-size: 11px;
@@ -128,7 +127,6 @@ body::after {
   color: var(--ink-dimmer);
   text-transform: uppercase;
 }
-
 /* generic section/box card - used across all subpages */
 .box {
   background: var(--panel);
@@ -177,7 +175,6 @@ body::after {
 .box, .box li, .box p { overflow-wrap: break-word; word-break: break-word; }
 .box a { color: #cfcfd4; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: break-word; word-break: break-word; }
 .box a:hover { color: var(--ink); }
-
 footer, .footer {
   margin-top: 56px;
   font-size: 9px;
@@ -192,8 +189,6 @@ footer a, .footer a {
   text-underline-offset: 2px;
 }
 footer a:hover, .footer a:hover { color: var(--ink); }
-
-
 .box ol { list-style: none; margin-left: 0; counter-reset: step; }
 .box ol > li {
   counter-increment: step;
@@ -213,7 +208,6 @@ footer a:hover, .footer a:hover { color: var(--ink); }
   background: rgba(255,255,255,0.02);
 }
 .box ol > li > ul { margin-top: 8px; }
-
 code {
   display: inline-block;
   background: #0c0c0c;
@@ -225,7 +219,6 @@ code {
   word-break: break-all;
   line-height: 1.5;
 }
-
 .note {
   margin-top: 22px;
   border: 1px dashed var(--line);
@@ -236,7 +229,6 @@ code {
 }
 .note b { color: var(--ink); }
 .note b::before { content: '\26A0 '; }
-
 .replit-link {
   display: inline-flex;
   align-items: center;
@@ -248,45 +240,57 @@ code {
   filter: grayscale(100%) contrast(1.1) brightness(1.05);
   border: 1px solid var(--line-soft);
 }
-
 </style>
 </head>
 <body>
-
-<div class="art-bg" aria-hidden="true"><pre>⠀⠀⠀⢸⣦⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢸⣏⠻⣶⣤⡶⢾⡿⠁⠀⢠⣄⡀⢀⣴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⣀⣼⠷⠀⠀⠁⢀⣿⠃⠀⠀⢀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠴⣾⣯⣅⣀⠀⠀⠀⠈⢻⣦⡀⠒⠻⠿⣿⡿⠿⠓⠂⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠉⢻⡇⣤⣾⣿⣷⣿⣿⣤⠀⠀⣿⠁⠀⠀⠀⢀⣴⣿⣿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠸⣿⡿⠏⠀⢀⠀⠀⠿⣶⣤⣤⣤⣄⣀⣴⣿⡿⢻⣿⡆⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠟⠁⠀⢀⣼⠀⠀⠀⠹⣿⣟⠿⠿⠿⡿⠋⠀⠘⣿⣇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢳⣶⣶⣿⣿⣇⣀⠀⠀⠙⣿⣆⠀⠀⠀⠀⠀⠀⠛⠿⣿⣦⣤⣀⠀⠀
-⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⠿⠋⠁⠀⣹⣿⠳⠀⠀⠀⠀⠀⠀⢀⣠⣽⣿⡿⠟⠃
-⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋⠁⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇⠁⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀</pre></div>
-
+<div class="art-bg" aria-hidden="true">
+<pre class="art-star">⠀⠀⠀⠀⠀⠀⠀⠠⡧⠀⠀⠀⠄⠀⣆
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⡄⠀⠀⠀⢺⠂⠀⠀⠀⢀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣧
+⠀⠐⠗⠀⠀⠀⠀⠁⠀⠀⠀⣼⣿⡏⣿⣷⡀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠐⠺⠂⠀⠀⠀⠀⠀⠀⠄
+⠤⣤⣤⣤⣤⣤⣤⣤⣤⣿⣿⠇⠀⢿⣿⣿⣷⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⠶⠶⠶⠶⠶⠶⠶⠶⠶⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒
+⠀⠀⠘⢿⣿⣿⣟⠛⠛⠛⠛⠀⠀⠀⠛⠛⠛⠛⠋⠉⠉⠉
+⠀⠀⠁⠀⠈⠛⣿⣿⣦
+⠀⠀⠀⠀⠀⠀⠀⢹⣿⡿
+⠀⠀⠀⠠⡧⠀⠀⣾⣿⠁⢀⣤⣾⣦⡀
+⠀⠠⠀⠀⠀⠀⣸⣿⢇⣶⣿⠟⠙⠻⣿⣄
+⠀⠀⠀⠀⠀⢠⣿⣿⠿⠋⠁⠀⠀⠀⠀⠉⠳⡄
+⠀⠀⠀⠀⠀⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈</pre>
+<pre class="art-blackhole">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠖⠃⠀⠀⠀⡁⠀⠀⠀⠀⠀⠐⠆⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⢔⡤⠊⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠁⠀⠀⠘⠁⢀⠀⠀⠀⠀⢈⠓⠂⠠⡄⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣶⠿⠞⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠁⠀⠠⡚⠁⢀⣙⣀⣈⡩⠬⢁⠀⢑⠶⠤⡆⠤⡀⠀⠀⠀⠀⠀⠀⢀⠴⢲⣋⣽⣷⠟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⢠⠀⠀⣶⠃⠗⣡⣶⣮⣿⡿⠿⠿⢿⣿⣷⣶⣤⣤⠤⠴⠦⠬⣤⣤⠄⣉⠉⠝⢲⣿⡷⠻⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠁⡀⡸⠁⣰⣿⡿⠛⠋⣁⡀⠤⠤⢄⡀⠈⠛⢯⣿⣟⣾⣶⣶⣮⣭⣵⣾⣿⣟⠿⠉⢨⠖⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⢠⠳⡧⣻⡿⠋⢀⠒⠉⠀⠀⠀⠀⠀⠀⠉⠢⠀⠀⠙⠛⣻⣿⣿⣿⢿⣿⣿⠟⡱⠖⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⢠⣧⠓⣾⣿⠁⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢦⣠⣾⣿⠿⣿⣿⣿⡿⣫⠏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠂⢃⣸⣿⠇⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣿⠟⢿⠁⠸⡿⣿⣯⡶⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⢘⡄⠘⣿⣿⠀⠸⡀⠀⠀⠀⠀⠀⢀⣀⣴⣾⣿⡿⡟⡋⠐⡇⠀⢸⣿⣿⠃⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢡⠘⢰⣿⡿⡆⠀⣇⠀⣀⣠⣤⣶⣿⢷⢟⠻⠀⠈⠀⠀⠀⡇⠀⣼⣿⣿⠂⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⢀⡴⢯⣾⠟⡏⢀⣠⣿⣿⣿⣟⢟⡋⠅⠘⠉⠀⠀⠀⠀⢀⠀⠁⢠⣿⣟⠃⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⣻⣷⡿⢙⣩⣶⡿⠿⠛⠉⠑⢡⡁⠀⠀⠀⠀⠀⠀⢀⠔⠁⠀⣰⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣡⣾⣥⣾⢫⡦⠾⠛⠙⠉⠀⠀⢀⣀⠀⠈⠙⠓⠦⠤⠤⠀⠘⠁⢀⡤⣾⡿⠏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠔⣴⣾⣿⣿⢟⢝⠢⠃⢀⣤⢴⣾⣮⣷⣶⢿⣶⡤⣐⡀⠀⣠⣤⢶⣪⣿⣿⡿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡀⣦⣾⡿⡛⠵⠺⢈⡠⠶⠿⠥⠥⡭⠉⠉⢱⡛⠻⠿⣿⣿⣿⣿⣿⠿⠿⠿⠟⠭⠛⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⢴⠕⣋⠝⠕⠐⠀⠔⠉⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠉⠁⠁⠁⠁⠈⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢀⣠⠁⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
+</div>
 <div class="shell">
-
   <nav class="crumb">
     <a href="/">conicey</a><span class="sep">/</span><span class="here">dev</span>
   </nav>
-
   <div class="page-head">
     <h1 class="page-title">Active Developer Badge</h1>
     <div class="page-sub">tutorial by conicey</div>
   </div>
-
   <div class="box">
     <ol>
       <li>Go to <a href="https://discord.com/developers/applications" target="_blank">https://discord.com/developers/applications</a>, and create a new application on the account you want the badge on.</li>
-
       <li>Navigate to the <b>Bot</b> tab and click the <b>"Reset Token"</b> button to generate a token (you may need to verify 2FA).</li>
-
       <li>Copy the token to your clipboard.</li>
-
       <li>
         Click on this badge to be redirected to Replit →
         <div class="replit-link">
@@ -299,50 +303,33 @@ code {
           <li>Click "Remix this app"</li>
         </ul>
       </li>
-
       <li>Wait for the repo template to fully load.</li>
-
       <li>Click the green <b>"Run .replit run command"</b> button.</li>
-
       <li>Paste the token you previously copied into the console next to where it asks for the application token.</li>
-
       <li>Press the <b>Enter</b> key.</li>
-
       <li>Wait for it to print <b>'DONE | Application/Bot is up and running.'</b>.
         <ul>
           <li><b>Don’t close the tab</b> while it's running.</li>
           <li><b>Don’t stop the program</b> or Discord will think the bot is offline.</li>
         </ul>
       </li>
-
       <li>Go to Discord’s application page → <b>General Information</b> → copy your application ID.</li>
-
       <li>Create a new Discord server (you can delete it later).</li>
-
       <li>Enable Community on the server.</li>
-
       <li>Return to <a href="https://discord.com/developers/applications" target="_blank">Discord Applications</a>.</li>
-
       <li>Copy the application ID again.</li>
-
       <li>Invite the bot using:<br>
         <code>https://discord.com/oauth2/authorize?client_id={applicationid}&scope=bot%20applications.commands&permissions=105227086912</code>
       </li>
-
       <li>Use <b>/ping</b> in your server.</li>
-
       <li>Go to the <a href="https://discord.com/developers/active-developer" target="_blank">Active Developer page</a> and register. (May take up to 24 hours.)</li>
-
       <li>Congrats on your new badge!</li>
     </ol>
-
     <div class="note">
       <b>Note</b> — Ensure “Use data to improve Discord” is enabled in User Settings → Privacy &amp; Safety.
     </div>
   </div>
-
   <footer>// conicey.com · active developer badge tutorial</footer>
-
 </div>
 </body>
 </html>
