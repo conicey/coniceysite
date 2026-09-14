@@ -44,12 +44,12 @@ body {
   opacity: 0.22;
   color: #ffffff;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
-  font-size: clamp(6px, 1.1vw, 12px);
+  font-size: clamp(9px, 1.6vw, 16px);
   line-height: 1.05;
   white-space: pre;
   text-align: center;
   letter-spacing: 0;
-  transform: scale(1.05);
+  transform: scale(1.35);
 }
 /* vignette */
 body::before {
@@ -116,13 +116,6 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-.page-sub {
-  margin-top: 10px;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  color: var(--ink-dimmer);
-  text-transform: uppercase;
-}
 /* post cards */
 .post-list {
   display: flex;
@@ -243,11 +236,9 @@ footer a:hover, .footer a:hover { color: var(--ink); }
 
   <div class="page-head">
     <h1 class="page-title">Pages</h1>
-    <div class="page-sub">News • Notes • Yaps • Thoughts</div>
   </div>
 
   <div class="post-list">
-    <!-- Template post cards — replace titles, dates, excerpts, and hrefs as needed -->
     <a href="/pages/post-1" class="post-card">
       <h2>Title</h2>
       <div class="post-meta">— • placeholder</div>
