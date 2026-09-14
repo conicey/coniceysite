@@ -85,6 +85,54 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
+/* ============ SIDE NAVIGATION (floating overlay, no panel) ============ */
+.sidenav {
+  position: fixed;
+  top: 50%;
+  left: 44px;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 190px;
+  pointer-events: none;
+}
+.sidenav * { pointer-events: auto; }
+.sidenav ul { list-style: none; }
+.sidenav li { margin-bottom: 15px; }
+.sidenav a {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  color: var(--ink-dimmer);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.sidenav a::before {
+  content: '\2013';
+  color: var(--ink-faint);
+  transition: color 0.2s ease;
+}
+.sidenav a:hover {
+  color: var(--ink-dim);
+  transform: translateX(2px);
+}
+.sidenav a.active { color: var(--ink); }
+.sidenav a.active::before {
+  content: '\2014\2014';
+  color: var(--ink);
+  letter-spacing: -2px;
+}
+@media (max-width: 780px) {
+  .sidenav {
+    top: 26px;
+    left: 20px;
+    transform: none;
+    width: auto;
+  }
+  .sidenav li { margin-bottom: 10px; }
+}
 .shell {
   position: relative;
   z-index: 1;
@@ -270,6 +318,17 @@ footer a:hover, .footer a:hover { color: var(--ink); }
 ⠀⠀⠀⠀⠑⠤⠔⠁⣸⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠥⠃⠀⠀⠀⠀</pre>
 </div>
+<nav class="sidenav" id="sidenav">
+  <ul>
+    <li><a href="/portfolio">Home</a></li>
+    <li><a href="/portfolio/animation">Animation</a></li>
+    <li><a href="/portfolio/design" class="active">Design</a></li>
+    <li><a href="/portfolio/development">Development</a></li>
+    <li><a href="/portfolio/servermanager">Server Management</a></li>
+    <li><a href="/portfolio/communitymanager">Community Management</a></li>
+    <li><a href="/portfolio/other">Other Work</a></li>
+  </ul>
+</nav>
 <div class="shell">
   <nav class="crumb">
     <a href="/">conicey</a><span class="sep">/</span><a href="/portfolio">portfolio</a><span class="sep">/</span><span class="here">design</span>
