@@ -1,1 +1,147 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conicey • Title Here</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+:root {
+  --bg: #000000;
+  --ink: #f1f1ee;
+  --ink-dim: #8f8f95;
+  --ink-dimmer: #5c5c62;
+  --ink-faint: #333338;
+  --line: rgba(255,255,255,0.14);
+  --line-soft: rgba(255,255,255,0.07);
+  --line-strong: rgba(255,255,255,0.5);
+  --panel: rgba(4,4,4,0.9);
+}
+html { background: var(--bg); }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+/* vignette */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,255,255,0.05), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,0,0,0.65), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+/* breadcrumb nav */
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 34px;
+}
+.crumb a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.crumb a:hover { color: var(--ink); }
+.crumb span.sep { color: var(--ink-faint); }
+.crumb span.here { color: var(--ink-dimmer); }
+/* page heading */
+.page-head { margin-bottom: 36px; text-align: left; }
+.page-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  text-transform: uppercase;
+  display: inline-block;
+}
+.page-title::after {
+  content: '_';
+  color: var(--ink-dimmer);
+  animation: blink 1.4s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+/* single content box */
+.content-box {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-left: 2px solid var(--line-strong);
+  padding: 28px 30px;
+}
+.content-box .subtitle {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.content-box .body-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+footer {
+  margin-top: 56px;
+  font-size: 9px;
+  color: var(--ink-faint);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: left;
+}
+footer a {
+  color: var(--ink-dimmer);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="crumb">
+    <a href="/">conicey</a><span class="sep">/</span><span class="here">title here</span>
+  </nav>
+  <div class="page-head">
+    <h1 class="page-title">Title Here</h1>
+  </div>
+  <div class="content-box">
+    <div class="subtitle">subtitle</div>
+    <p class="body-text">text</p>
+  </div>
+  <footer>&copy; conicey</footer>
+</div>
+</body>
+</html>
