@@ -7,9 +7,7 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
-
 :root {
   --bg: #000000;
   --ink: #f1f1ee;
@@ -21,9 +19,7 @@
   --line-strong: rgba(255,255,255,0.5);
   --panel: rgba(4,4,4,0.9);
 }
-
 html { background: var(--bg); }
-
 body {
   background: var(--bg);
   color: var(--ink);
@@ -32,7 +28,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
 /* fixed ascii art watermark field — three separate pieces, each pinned to
    its own corner so they read as a deliberate composition rather than a
    stacked mess */
@@ -55,7 +50,6 @@ body {
   line-height: 1;
   letter-spacing: 0;
 }
-
 /* skull / moth piece, bottom-left */
 .art-piece--b {
   bottom: 5%;
@@ -63,7 +57,6 @@ body {
   font-size: clamp(9px, 1.6vw, 20px);
   opacity: 0.18;
 }
-
 /* skull + wordmark lockup, top-right. Fixed, whole-number pixel sizes only —
    fractional (vw-based) font sizes round each character's advance width
    differently, and across 70+ columns that rounding drift is what was
@@ -74,7 +67,6 @@ body {
   font-size: 13px;
   opacity: 0.2;
 }
-
 /* small rocket/star piece, top-left */
 .art-piece--d {
   top: 6%;
@@ -82,13 +74,11 @@ body {
   font-size: 16px;
   opacity: 0.18;
 }
-
 @media (max-width: 900px) {
   /* keep only one piece on narrow viewports so it doesn't feel cluttered */
   .art-piece--b, .art-piece--d { display: none; }
   .art-piece--c { top: 2%; right: -4%; font-size: 8px; opacity: 0.14; }
 }
-
 /* vignette */
 body::before {
   content: '';
@@ -100,7 +90,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-
 /* scanlines */
 body::after {
   content: '';
@@ -113,7 +102,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-
 .container {
   position: relative;
   z-index: 1;
@@ -121,7 +109,6 @@ body::after {
   margin: 0 auto;
   padding: 60px 24px 80px;
 }
-
 /* ASCII wordmark */
 .ascii-hero {
   font-size: clamp(5px, 1.1vw, 9px);
@@ -133,7 +120,6 @@ body::after {
   overflow: hidden;
   font-family: 'JetBrains Mono', monospace;
 }
-
 .site-sub {
   font-size: 11px;
   color: var(--ink-dimmer);
@@ -153,7 +139,6 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-
 /* Section */
 .section {
   background: var(--panel);
@@ -169,7 +154,6 @@ body::after {
   background: #0b0b0b;
   box-shadow: -4px 0 24px rgba(255,255,255,0.05);
 }
-
 .section-label {
   font-size: 9px;
   letter-spacing: 3px;
@@ -178,13 +162,11 @@ body::after {
   margin-bottom: 10px;
 }
 .section-label::before { content: '// '; color: var(--ink-faint); }
-
 .section p {
   font-size: 12px;
   color: var(--ink-dim);
   line-height: 1.8;
 }
-
 /* Links */
 .link-grid {
   display: flex;
@@ -192,7 +174,6 @@ body::after {
   gap: 8px;
   margin-bottom: 16px;
 }
-
 .link-item {
   display: flex;
   align-items: center;
@@ -221,7 +202,6 @@ body::after {
 .link-item:hover { color: var(--ink); background: #0d0d0d; border-color: var(--line); }
 .link-item:hover::before { transform: scaleY(1); }
 .link-item::after { content: '\2192'; opacity: 0.4; font-size: 12px; }
-
 /* Lists */
 .tag-list {
   list-style: none;
@@ -244,10 +224,8 @@ body::after {
   font-size: 9px;
   top: 3px;
 }
-
 .sub-list { margin-top: 6px; margin-left: 14px; }
 .sub-list li::before { color: var(--ink-faint); }
-
 .watched-sub-heading {
   font-size: 9px;
   letter-spacing: 2px;
@@ -257,7 +235,6 @@ body::after {
   margin-bottom: 8px;
 }
 .watched-sub-heading:first-of-type { margin-top: 0; }
-
 footer {
   margin-top: 60px;
   font-size: 9px;
@@ -268,7 +245,6 @@ footer {
 </style>
 </head>
 <body>
-
 <div class="art-bg" aria-hidden="true"><pre class="art-piece art-piece--d">⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⢈⣾⣿⡇⠀⠀⠀⠀⠀⢀⣼⡇⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⣴⣿⣿⠃⠀⠀⠀⠀
@@ -342,9 +318,7 @@ footer {
 ⢸⣿⡇⢸⣿⡇⠀⠈⣿⣿⣿⣿⣿⣿⠀⠀⢸⣿⣿⠁⠀⣿⣿⣿⠀⣿⣿⡇⠀⠀⣿⣿⡇⢸⣿⣿⣿⣿⣿⡇
 ⢸⣿⡇⢸⣿⠃⠀⠀⠹⣿⣿⣿⣿⠃⠀⠀⢸⣿⣿⠀⠀⣿⣿⣏⠀⣿⣿⡇⠀⠀⢻⣿⣧⠀⢻⣿⣿⣿⡟⠀
 ⠈⠉⠁⠈⠉⠀⠀⠀⠀⠈⠛⠛⠁⠀⠀⠀⠈⠉⠉⠀⠀⠈⠉⠁⠈⠉⠉⠁⠀⠀⠈⠉⠉⠀⠀⠙⠛⠋⠀⠀</pre></div>
-
 <div class="container">
-
 <pre class="ascii-hero">
   ██████╗ ██████╗ ███╗   ██╗██╗ ██████╗███████╗██╗   ██╗
  ██╔════╝██╔═══██╗████╗  ██║██║██╔════╝██╔════╝╚██╗ ██╔╝
@@ -353,12 +327,10 @@ footer {
  ╚██████╗╚██████╔╝██║ ╚████║██║╚██████╗███████╗   ██║   
   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝ ╚═════╝╚═══════╝   ╚═╝   
 </pre>
-
 <div class="section">
   <div class="section-label">about</div>
   <p>Im a developer, animator, and designer. Some of my main focuses are bot automation and ui design. Im also a leaderboard player on most of the games i play. Most projects are private, experimental, or archived. Find more about me in my biolink, portfolio and "about me" extention below!</p>
 </div>
-
 <div class="section">
   <div class="section-label">focus</div>
   <ul class="tag-list">
@@ -370,78 +342,13 @@ footer {
     <li>private tools, prototypes, archived builds</li>
   </ul>
 </div>
-
 <div class="link-grid">
   <a class="link-item" href="/biolink">biolink</a>
   <a class="link-item" href="/dev">active developer badge tutorial</a>
   <a class="link-item" href="/portfolio">portfolio</a>
+  <a class="link-item" href="https://conicey.com/pages">pages</a>
 </div>
-
-<div class="section">
-  <div class="section-label">watched</div>
-  <div class="watched-sub-heading">animes</div>
-  <ul class="tag-list">
-    <li>Frieren</li>
-    <li>Black Clover</li>
-    <li>7 Deadly Sins</li>
-    <li>Secrets of the Silent Witch</li>
-    <li>Solo Leveling</li>
-    <li>Kakegurui</li>
-    <li>Puella Magi Madoka Magica</li>
-    <li>Shiboyugi</li>
-    <li>Hell's Paradise</li>
-    <li>Wistoria Wand and Sword</li>
-    <li>Jobless Reincarnation</li>
-    <li>Witch Hat Atelier</li>
-  </ul>
-  <div class="watched-sub-heading">movies/series</div>
-  <ul class="tag-list">
-    <li>Invincible</li>
-    <li>Smallville</li>
-    <li>Blood of Zeus</li>
-    <li>A Series of Unfortunate Events</li>
-    <li>Stranger Things</li>
-    <li>Wednesday</li>
-    <li>Miraculous</li>
-    <li>Avatar: The Last Airbender</li>
-    <li>The Legend of Korra</li>
-    <li>Orange Is the New Black</li>
-    <li>Money Heist</li>
-    <li>Rick and Morty</li>
-    <li>Inside Job</li>
-    <li>Slugterra</li>
-    <li>How to Train Your Dragon</li>
-    <li>The Dragon Prince</li>
-    <li>Wayward</li>
-    <li>The Sandman</li>
-  </ul>
-</div>
-
-<div class="section">
-  <div class="section-label">games</div>
-  <ul class="tag-list">
-    <li>Agar.io / Delta</li>
-    <li>Roblox
-      <ul class="tag-list sub-list">
-        <li>KAT</li>
-        <li>Booga Booga</li>
-        <li>Da Hood / Zee Hood</li>
-      </ul>
-    </li>
-    <li>Minecraft
-      <ul class="tag-list sub-list">
-        <li>AspiredMC</li>
-        <li>MythicStar</li>
-        <li>DivineCraft</li>
-      </ul>
-    </li>
-    <li>Fortnite</li>
-    <li>Krunker (KPD)</li>
-  </ul>
-</div>
-
 <footer>// conicey.com</footer>
-
 </div>
 </body>
 </html>
