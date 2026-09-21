@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conicey • Title Here</title>
+<title>Conicey • AI</title>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -108,10 +108,30 @@ body::after {
   font-weight: 600;
   margin-bottom: 14px;
 }
+.content-box .sub-subtitle {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-dimmer);
+  font-weight: 600;
+  margin-top: 22px;
+  margin-bottom: 8px;
+}
+.content-box .sub-subtitle:first-of-type {
+  margin-top: 6px;
+}
 .content-box .body-text {
   font-size: 13px;
   line-height: 1.7;
   color: var(--ink);
+}
+.content-box .sources {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-dimmer);
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
 }
 footer {
   margin-top: 56px;
@@ -132,14 +152,30 @@ footer a:hover { color: var(--ink); }
 <body>
 <div class="shell">
   <nav class="crumb">
-    <a href="/">conicey</a><span class="sep">/</span><span class="here">title here</span>
+    <a href="/">conicey</a><span class="sep">/</span><span class="here">ai</span>
   </nav>
   <div class="page-head">
-    <h1 class="page-title">Title Here</h1>
+    <h1 class="page-title">AI</h1>
   </div>
   <div class="content-box">
-    <div class="subtitle">subtitle</div>
-    <p class="body-text">text</p>
+    <div class="subtitle">AI Usage</div>
+
+    <div class="sub-subtitle">The Water Myth vs. Reality</div>
+    <p class="body-text">Misconception: "Using AI drains all the water." Reality: It's not your queries—it's the infrastructure. AI consumes water three ways: (1) Direct cooling at data centers (11–26M liters/day per facility), (2) Indirect use from power plants (373B liters in 2023 vs. 140B liters direct), and (3) Chip manufacturing. Training GPT-3 used ~5.4M liters total, but a single text prompt uses just ~0.26 mL (5 drops). The problem? Scale: billions of daily queries + video generation (4L/video) + images (4x text) = 312–765B liters projected by 2025.</p>
+
+    <div class="sub-subtitle">What Actually Hurts: Emissions & Fumes</div>
+    <p class="body-text">AI data centers emitted 180–286M tons CO₂ in 2024–2025 (AI = 15–20%). By 2030, this could triple to 2.5B tons—40% of current U.S. emissions. Backup diesel generators release NOₓ and particulate matter, degrading local air quality. AI's 2025 carbon footprint alone: 32.6–79.7M tons (NYC-level).</p>
+
+    <div class="sub-subtitle">Training vs. Inference: Where the Damage Is</div>
+    <p class="body-text">Training large models (GPT-3, GPT-4) is a one-time massive hit (~626K lbs CO₂, 5.4M liters water). But inference (daily use) now surpasses training within weeks for popular models due to volume. Video generation is worst: 466g CO₂ + 4L water per video. Task-specific AI (weather, grid optimization) uses orders of magnitude less.</p>
+
+    <div class="sub-subtitle">Old AI vs. New AI: The Explosion</div>
+    <p class="body-text">2020: AI was a minor data center workload. 2025: AI power demand jumped from 9.4 GW to 23 GW in one year. By 2030, AI could be 40–50% of data center usage—matching Japan's entire power consumption. Efficiency gains (3.7x better chips) are overwhelmed by 37% annual electricity growth.</p>
+
+    <div class="sub-subtitle">The Bottom Line</div>
+    <p class="body-text">AI's environmental cost is real but concentrated: generative AI (especially video/images) and massive model training drive most water/carbon use. Narrow AI for climate solutions could cut 3.2–5.4B tons CO₂ by 2035, but as of 2026, no evidence shows generative AI is net-positive. The fix: renewable energy, water recycling, and transparency—not stopping AI entirely.</p>
+
+    <p class="sources">Sources: IEA, Cell Reports Sustainability, Axis Intelligence, UC Riverside (2024–2026).</p>
   </div>
   <footer>&copy; conicey</footer>
 </div>
