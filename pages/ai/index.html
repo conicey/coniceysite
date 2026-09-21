@@ -93,13 +93,15 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-/* single content box */
+/* content boxes */
 .content-box {
   background: var(--panel);
   border: 1px solid var(--line-soft);
   border-left: 2px solid var(--line-strong);
   padding: 28px 30px;
+  margin-bottom: 24px;
 }
+.content-box:last-of-type { margin-bottom: 0; }
 .content-box .subtitle {
   font-size: 13px;
   letter-spacing: 1.5px;
@@ -157,6 +159,7 @@ footer a:hover { color: var(--ink); }
   <div class="page-head">
     <h1 class="page-title">AI</h1>
   </div>
+
   <div class="content-box">
     <div class="subtitle">AI Usage</div>
 
@@ -177,6 +180,26 @@ footer a:hover { color: var(--ink); }
 
     <p class="sources">Sources: IEA, Cell Reports Sustainability, Axis Intelligence, UC Riverside (2024–2026).</p>
   </div>
+
+  <div class="content-box">
+    <div class="subtitle">The Future of AI</div>
+
+    <div class="sub-subtitle">Trajectory, Capabilities, Limits</div>
+    <p class="body-text">AI is shifting from single-task copilots to multi-step agents with oversight. Near term (1–3y): AI standard in knowledge work; multimodal models mature; more on-device inference. Mid term (3–7y): agents automate routine end-to-end workflows in defined domains; robotics scales in structured settings. Long term (7–20y+): progress toward generalist systems depends on reasoning, planning, world models, and is constrained by safety, governance, and energy. Strengths: drafting, coding assist, analysis, support, document processing. Limits: deep causal reasoning, novel edge cases, guaranteed correctness in high-stakes settings, safe physical autonomy.</p>
+
+    <div class="sub-subtitle">Economy, Jobs, Industries</div>
+    <p class="body-text">Unit costs for many digital tasks fall, expanding demand and enabling AI-native products and verticalized, data-trained solutions. Productivity gains lead in coding, design, analysis, operations. Routine cognitive roles face pressure; demand grows for AI-literate domain experts, data stewards, safety/compliance, and integration engineers. Sector snapshots: software (pair programming default; more architecture/product focus), healthcare/biotech (faster discovery/imaging; strict validation), finance/law (doc review/compliance/research; human accountability), education (personalized tutoring; teacher as coach), media/manufacturing/energy/defense (creative workflows, predictive maintenance, grid/materials optimization, controlled autonomy).</p>
+
+    <div class="sub-subtitle">Agents, Frontier Models, AGI Path</div>
+    <p class="body-text">Personal agents handle scheduling, research, purchases, comms; enterprise agents automate CRM/ERP/support/finance workflows. Full autonomy is realistic only in narrow, monitored domains; broad unsupervised autonomy remains risky. Frontier progress relies on better reasoning architectures, long-context memory, multimodal world models, and tool use; scaling alone likely insufficient. AGI timelines are highly uncertain; bottlenecks include data quality/diversity, robust evaluation, alignment under shift, and compute/energy limits.</p>
+
+    <div class="sub-subtitle">Safety, Regulation, Hardware, Ecosystems</div>
+    <p class="body-text">Risks: misuse (fraud, cyber, disinfo), accidents in high-stakes systems, power concentration, socio-technical feedback loops. Mitigations: capability gating, red-teaming, evaluations, monitoring, human oversight, incident reporting. Policy trend: risk-based rules, synthetic-media transparency, liability for harms, compute/model reporting; may favor large players but can reduce adoption uncertainty; cross-border fragmentation is a risk. Hardware: specialized chips, advanced packaging, memory-centric designs; data-center power demand rises; efficiency via cooling, scheduling, clean-energy siting; edge inference grows with model compression. Ecosystems: closed leads frontier capability; open leads customization/transparency; enterprises will mix both.</p>
+
+    <div class="sub-subtitle">Society, Scenarios, Playbook</div>
+    <p class="body-text">AI lowers creation barriers; emphasis shifts to judgment, curation, originality. Synthetic media blurs reality; provenance tools and media literacy become essential. Benefits (access to tutoring/support) coexist with risks (overreliance, displacement, trust erosion); outcomes depend on policy and distribution choices. Scenarios: best-case (broad productivity, science acceleration, controlled risks), base-case (steady gains, patchy adoption, gradual regulation), worst-case (major incidents, crackdowns, concentration, harm, trust loss). Key uncertainties: agent reliability, energy/compute limits, regulatory shocks, geopolitics around chips/models. Playbook: individuals—learn AI workflows, strengthen domain expertise, focus on judgment/ethics/creativity; companies—start with high-ROI/low-risk use cases, invest in data quality/governance, redesign for human-AI teams, implement safety/monitoring/incident response, track sector-relevant regulation.</p>
+  </div>
+
   <footer>&copy; conicey</footer>
 </div>
 </body>
