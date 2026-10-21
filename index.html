@@ -28,9 +28,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-/* fixed ascii art watermark field — three separate pieces, each pinned to
-   its own corner so they read as a deliberate composition rather than a
-   stacked mess */
 .art-bg {
   position: fixed;
   inset: 0;
@@ -50,24 +47,18 @@ body {
   line-height: 1;
   letter-spacing: 0;
 }
-/* skull / moth piece, bottom-left */
 .art-piece--b {
   bottom: 5%;
   left: 4%;
   font-size: clamp(9px, 1.6vw, 20px);
   opacity: 0.18;
 }
-/* skull + wordmark lockup, top-right. Fixed, whole-number pixel sizes only —
-   fractional (vw-based) font sizes round each character's advance width
-   differently, and across 70+ columns that rounding drift is what was
-   throwing the wordmark's letterforms out of alignment. */
 .art-piece--c {
   top: 4%;
   right: 1%;
   font-size: 13px;
   opacity: 0.2;
 }
-/* small rocket/star piece, top-left */
 .art-piece--d {
   top: 6%;
   left: 3%;
@@ -75,11 +66,9 @@ body {
   opacity: 0.18;
 }
 @media (max-width: 900px) {
-  /* keep only one piece on narrow viewports so it doesn't feel cluttered */
   .art-piece--b, .art-piece--d { display: none; }
   .art-piece--c { top: 2%; right: -4%; font-size: 8px; opacity: 0.14; }
 }
-/* vignette */
 body::before {
   content: '';
   position: fixed;
@@ -90,7 +79,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-/* scanlines */
 body::after {
   content: '';
   position: fixed;
@@ -109,7 +97,6 @@ body::after {
   margin: 0 auto;
   padding: 60px 24px 80px;
 }
-/* ASCII wordmark */
 .ascii-hero {
   font-size: clamp(5px, 1.1vw, 9px);
   line-height: 1.2;
@@ -139,7 +126,6 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-/* Section */
 .section {
   background: var(--panel);
   border: 1px solid var(--line-soft);
@@ -167,7 +153,6 @@ body::after {
   color: var(--ink-dim);
   line-height: 1.8;
 }
-/* Links */
 .link-grid {
   display: flex;
   flex-direction: column;
@@ -202,7 +187,6 @@ body::after {
 .link-item:hover { color: var(--ink); background: #0d0d0d; border-color: var(--line); }
 .link-item:hover::before { transform: scaleY(1); }
 .link-item::after { content: '\2192'; opacity: 0.4; font-size: 12px; }
-/* Lists */
 .tag-list {
   list-style: none;
   display: flex;
