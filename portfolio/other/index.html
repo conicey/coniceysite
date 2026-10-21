@@ -28,7 +28,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-/* fixed ascii-art watermark */
 .art-bg {
   position: fixed;
   inset: 0;
@@ -50,7 +49,6 @@ body {
   text-align: center;
   letter-spacing: 0;
 }
-/* vignette */
 body::before {
   content: '';
   position: fixed;
@@ -61,7 +59,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-/* scanlines */
 body::after {
   content: '';
   position: fixed;
@@ -73,7 +70,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-/* ============ SIDE NAVIGATION (floating overlay, no panel) ============ */
 .sidenav {
   position: fixed;
   top: 50%;
@@ -128,7 +124,6 @@ body::after {
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
-/* breadcrumb nav */
 .crumb {
   display: flex;
   align-items: center;
@@ -147,7 +142,6 @@ body::after {
 .crumb a:hover { color: var(--ink); }
 .crumb span.sep { color: var(--ink-faint); }
 .crumb span.here { color: var(--ink-dimmer); }
-/* page heading */
 .page-head { margin-bottom: 36px; }
 .page-title {
   font-size: clamp(28px, 5vw, 42px);
@@ -170,7 +164,6 @@ body::after {
   color: var(--ink-dimmer);
   text-transform: uppercase;
 }
-/* generic section/box card - used across all subpages */
 .box {
   background: var(--panel);
   border: 1px solid var(--line-soft);
