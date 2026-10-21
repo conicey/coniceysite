@@ -28,7 +28,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-/* vignette */
 body::before {
   content: '';
   position: fixed;
@@ -39,7 +38,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-/* scanlines */
 body::after {
   content: '';
   position: fixed;
@@ -58,7 +56,6 @@ body::after {
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
-/* breadcrumb nav */
 .crumb {
   display: flex;
   align-items: center;
@@ -77,7 +74,6 @@ body::after {
 .crumb a:hover { color: var(--ink); }
 .crumb span.sep { color: var(--ink-faint); }
 .crumb span.here { color: var(--ink-dimmer); }
-/* page heading */
 .page-head { margin-bottom: 36px; text-align: left; }
 .page-title {
   font-size: clamp(28px, 5vw, 42px);
@@ -93,7 +89,6 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-/* content boxes */
 .content-box {
   background: var(--panel);
   border: 1px solid var(--line-soft);
@@ -159,47 +154,33 @@ footer a:hover { color: var(--ink); }
   <div class="page-head">
     <h1 class="page-title">AI</h1>
   </div>
-
   <div class="content-box">
     <div class="subtitle">AI Usage</div>
-
     <div class="sub-subtitle">The Water Myth vs. Reality</div>
     <p class="body-text">Misconception: "Using AI drains all the water." Reality: It's not your queries—it's the infrastructure. AI consumes water three ways: (1) Direct cooling at data centers (11–26M liters/day per facility), (2) Indirect use from power plants (373B liters in 2023 vs. 140B liters direct), and (3) Chip manufacturing. Training GPT-3 used ~5.4M liters total, but a single text prompt uses just ~0.26 mL (5 drops). The problem? Scale: billions of daily queries + video generation (4L/video) + images (4x text) = 312–765B liters projected by 2025.</p>
-
     <div class="sub-subtitle">What Actually Hurts: Emissions & Fumes</div>
     <p class="body-text">AI data centers emitted 180–286M tons CO₂ in 2024–2025 (AI = 15–20%). By 2030, this could triple to 2.5B tons—40% of current U.S. emissions. Backup diesel generators release NOₓ and particulate matter, degrading local air quality. AI's 2025 carbon footprint alone: 32.6–79.7M tons (NYC-level).</p>
-
     <div class="sub-subtitle">Training vs. Inference: Where the Damage Is</div>
     <p class="body-text">Training large models (GPT-3, GPT-4) is a one-time massive hit (~626K lbs CO₂, 5.4M liters water). But inference (daily use) now surpasses training within weeks for popular models due to volume. Video generation is worst: 466g CO₂ + 4L water per video. Task-specific AI (weather, grid optimization) uses orders of magnitude less.</p>
-
     <div class="sub-subtitle">Old AI vs. New AI: The Explosion</div>
     <p class="body-text">2020: AI was a minor data center workload. 2025: AI power demand jumped from 9.4 GW to 23 GW in one year. By 2030, AI could be 40–50% of data center usage—matching Japan's entire power consumption. Efficiency gains (3.7x better chips) are overwhelmed by 37% annual electricity growth.</p>
-
     <div class="sub-subtitle">The Bottom Line</div>
     <p class="body-text">AI's environmental cost is real but concentrated: generative AI (especially video/images) and massive model training drive most water/carbon use. Narrow AI for climate solutions could cut 3.2–5.4B tons CO₂ by 2035, but as of 2026, no evidence shows generative AI is net-positive. The fix: renewable energy, water recycling, and transparency—not stopping AI entirely.</p>
-
     <p class="sources">Sources: IEA, Cell Reports Sustainability, Axis Intelligence, UC Riverside (2024–2026).</p>
   </div>
-
   <div class="content-box">
     <div class="subtitle">The Future of AI</div>
-
     <div class="sub-subtitle">Trajectory, Capabilities, Limits</div>
     <p class="body-text">AI is shifting from single-task copilots to multi-step agents with oversight. Near term (1–3y): AI standard in knowledge work; multimodal models mature; more on-device inference. Mid term (3–7y): agents automate routine end-to-end workflows in defined domains; robotics scales in structured settings. Long term (7–20y+): progress toward generalist systems depends on reasoning, planning, world models, and is constrained by safety, governance, and energy. Strengths: drafting, coding assist, analysis, support, document processing. Limits: deep causal reasoning, novel edge cases, guaranteed correctness in high-stakes settings, safe physical autonomy.</p>
-
     <div class="sub-subtitle">Economy, Jobs, Industries</div>
     <p class="body-text">Unit costs for many digital tasks fall, expanding demand and enabling AI-native products and verticalized, data-trained solutions. Productivity gains lead in coding, design, analysis, operations. Routine cognitive roles face pressure; demand grows for AI-literate domain experts, data stewards, safety/compliance, and integration engineers. Sector snapshots: software (pair programming default; more architecture/product focus), healthcare/biotech (faster discovery/imaging; strict validation), finance/law (doc review/compliance/research; human accountability), education (personalized tutoring; teacher as coach), media/manufacturing/energy/defense (creative workflows, predictive maintenance, grid/materials optimization, controlled autonomy).</p>
-
     <div class="sub-subtitle">Agents, Frontier Models, AGI Path</div>
     <p class="body-text">Personal agents handle scheduling, research, purchases, comms; enterprise agents automate CRM/ERP/support/finance workflows. Full autonomy is realistic only in narrow, monitored domains; broad unsupervised autonomy remains risky. Frontier progress relies on better reasoning architectures, long-context memory, multimodal world models, and tool use; scaling alone likely insufficient. AGI timelines are highly uncertain; bottlenecks include data quality/diversity, robust evaluation, alignment under shift, and compute/energy limits.</p>
-
     <div class="sub-subtitle">Safety, Regulation, Hardware, Ecosystems</div>
     <p class="body-text">Risks: misuse (fraud, cyber, disinfo), accidents in high-stakes systems, power concentration, socio-technical feedback loops. Mitigations: capability gating, red-teaming, evaluations, monitoring, human oversight, incident reporting. Policy trend: risk-based rules, synthetic-media transparency, liability for harms, compute/model reporting; may favor large players but can reduce adoption uncertainty; cross-border fragmentation is a risk. Hardware: specialized chips, advanced packaging, memory-centric designs; data-center power demand rises; efficiency via cooling, scheduling, clean-energy siting; edge inference grows with model compression. Ecosystems: closed leads frontier capability; open leads customization/transparency; enterprises will mix both.</p>
-
     <div class="sub-subtitle">Society, Scenarios, Playbook</div>
     <p class="body-text">AI lowers creation barriers; emphasis shifts to judgment, curation, originality. Synthetic media blurs reality; provenance tools and media literacy become essential. Benefits (access to tutoring/support) coexist with risks (overreliance, displacement, trust erosion); outcomes depend on policy and distribution choices. Scenarios: best-case (broad productivity, science acceleration, controlled risks), base-case (steady gains, patchy adoption, gradual regulation), worst-case (major incidents, crackdowns, concentration, harm, trust loss). Key uncertainties: agent reliability, energy/compute limits, regulatory shocks, geopolitics around chips/models. Playbook: individuals—learn AI workflows, strengthen domain expertise, focus on judgment/ethics/creativity; companies—start with high-ROI/low-risk use cases, invest in data quality/governance, redesign for human-AI teams, implement safety/monitoring/incident response, track sector-relevant regulation.</p>
   </div>
-
   <footer>&copy; conicey</footer>
 </div>
 </body>
