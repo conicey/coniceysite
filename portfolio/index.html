@@ -6,11 +6,8 @@
 <title>Conicey • Portfolio</title>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <style>
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
-
 :root {
   --bg: #000000;
   --ink: #f1f1ee;
@@ -23,9 +20,7 @@
   --panel: rgba(4,4,4,0.9);
   --sidenav-w: 210px;
 }
-
 html { background: var(--bg); }
-
 body {
   background: var(--bg);
   color: var(--ink);
@@ -34,8 +29,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
-/* fixed background art watermark (braille ascii art, no image dependency) */
 .art-bg {
   position: fixed;
   inset: 0;
@@ -57,13 +50,10 @@ body {
   white-space: pre;
   line-height: 1;
   letter-spacing: 0;
-  /* scales with viewport so it stays large and legible instead of shrinking away */
   font-size: clamp(9px, 1.6vw, 22px);
   text-align: center;
   transform: scale(1.15);
 }
-
-/* vignette */
 body::before {
   content: '';
   position: fixed;
@@ -74,8 +64,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-
-/* scanlines */
 body::after {
   content: '';
   position: fixed;
@@ -87,8 +75,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-
-/* ============ SIDE NAVIGATION (floating overlay, no panel) ============ */
 .sidenav {
   position: fixed;
   top: 50%;
@@ -96,10 +82,9 @@ body::after {
   transform: translateY(-50%);
   z-index: 5;
   width: 190px;
-  pointer-events: none; /* let the background show through everywhere except the links themselves */
+  pointer-events: none;
 }
 .sidenav * { pointer-events: auto; }
-
 .sidenav ul {
   list-style: none;
 }
@@ -132,9 +117,6 @@ body::after {
   color: var(--ink);
   letter-spacing: -2px;
 }
-
-/* small screens: shrink and tuck into the top-left instead of vertically centering,
-   so it never overlaps the page content */
 @media (max-width: 780px) {
   .sidenav {
     top: 26px;
@@ -145,7 +127,6 @@ body::after {
   .sidenav-brand { margin-bottom: 16px; }
   .sidenav li { margin-bottom: 10px; }
 }
-
 .shell {
   position: relative;
   z-index: 1;
@@ -153,8 +134,6 @@ body::after {
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
-
-/* breadcrumb nav */
 .crumb {
   display: flex;
   align-items: center;
@@ -173,8 +152,6 @@ body::after {
 .crumb a:hover { color: var(--ink); }
 .crumb span.sep { color: var(--ink-faint); }
 .crumb span.here { color: var(--ink-dimmer); }
-
-/* page heading */
 .page-head { margin-bottom: 36px; }
 .page-title {
   font-size: clamp(28px, 5vw, 42px);
@@ -190,7 +167,6 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-
 .page-sub {
   margin-top: 10px;
   font-size: 11px;
@@ -198,8 +174,6 @@ body::after {
   color: var(--ink-dimmer);
   text-transform: uppercase;
 }
-
-/* generic section/box card - used across all subpages */
 .box {
   background: var(--panel);
   border: 1px solid var(--line-soft);
@@ -247,7 +221,6 @@ body::after {
 .box, .box li, .box p { overflow-wrap: break-word; word-break: break-word; }
 .box a { color: #cfcfd4; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: break-word; word-break: break-word; }
 .box a:hover { color: var(--ink); }
-
 footer, .footer {
   margin-top: 56px;
   font-size: 9px;
@@ -262,8 +235,6 @@ footer a, .footer a {
   text-underline-offset: 2px;
 }
 footer a:hover, .footer a:hover { color: var(--ink); }
-
-
 .hero-topline {
   font-size: 11px;
   letter-spacing: 2.5px;
@@ -278,7 +249,6 @@ footer a:hover, .footer a:hover { color: var(--ink); }
   max-width: 640px;
 }
 .hero-body strong { color: var(--ink); font-weight: 700; }
-
 .nav-label {
   font-size: 10px;
   letter-spacing: 3px;
@@ -287,7 +257,6 @@ footer a:hover, .footer a:hover { color: var(--ink); }
   margin: 44px 0 16px;
 }
 .nav-label::before { content: '// '; color: var(--ink-faint); }
-
 .cap-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -296,7 +265,6 @@ footer a:hover, .footer a:hover { color: var(--ink); }
 }
 @media (max-width: 860px) { .cap-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 560px) { .cap-grid { grid-template-columns: 1fr; } }
-
 .cap-card {
   display: flex;
   flex-direction: column;
@@ -345,11 +313,9 @@ footer a:hover, .footer a:hover { color: var(--ink); }
 }
 .cap-arrow { color: var(--ink-dimmer); opacity: 0.7; }
 .cap-card:hover .cap-arrow { color: var(--ink); opacity: 1; }
-
 </style>
 </head>
 <body>
-
 <div class="art-bg" aria-hidden="true"><pre>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -376,7 +342,6 @@ footer a:hover, .footer a:hover { color: var(--ink); }
 ⠀⠈⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre></div>
-
 <nav class="sidenav" id="sidenav">
   <ul>
     <li><a href="/portfolio" class="active">Home</a></li>
@@ -388,20 +353,15 @@ footer a:hover, .footer a:hover { color: var(--ink); }
     <li><a href="/portfolio/other">Other Work</a></li>
   </ul>
 </nav>
-
 <div class="shell">
-
   <nav class="crumb">
     <a href="/">conicey</a><span class="sep">/</span><span class="here">portfolio</span>
   </nav>
-
   <section class="page-head">
     <div class="hero-topline">conicey — next gen multidisciplinary</div>
     <p class="hero-body"><strong>Building the future while everyone else catches up.</strong> This is the central hub for my work.</p>
   </section>
-
   <div class="nav-label">portfolio navigation</div>
-
   <section class="cap-grid">
     <a class="cap-card" href="/portfolio/animation">
       <div>
@@ -464,10 +424,7 @@ footer a:hover, .footer a:hover { color: var(--ink); }
       </div>
     </a>
   </section>
-
   <footer>&copy; 2025 conicey · <a href="https://conicey.com">return to main site</a></footer>
-
 </div>
-
 </body>
 </html>
