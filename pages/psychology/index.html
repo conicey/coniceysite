@@ -28,7 +28,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-/* vignette */
 body::before {
   content: '';
   position: fixed;
@@ -39,7 +38,6 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-/* scanlines */
 body::after {
   content: '';
   position: fixed;
@@ -58,7 +56,6 @@ body::after {
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
-/* breadcrumb nav */
 .crumb {
   display: flex;
   align-items: center;
@@ -77,7 +74,6 @@ body::after {
 .crumb a:hover { color: var(--ink); }
 .crumb span.sep { color: var(--ink-faint); }
 .crumb span.here { color: var(--ink-dimmer); }
-/* page heading */
 .page-head { margin-bottom: 36px; text-align: left; }
 .page-title {
   font-size: clamp(28px, 5vw, 42px);
@@ -93,7 +89,6 @@ body::after {
   animation: blink 1.4s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
-/* content boxes */
 .content-box {
   background: var(--panel);
   border: 1px solid var(--line-soft);
@@ -139,22 +134,18 @@ footer a:hover { color: var(--ink); }
   <div class="page-head">
     <h1 class="page-title">Psychology</h1>
   </div>
-
   <div class="content-box">
     <div class="subtitle">Dopamine</div>
     <p class="body-text">You probably can't even focus on a single task for more than 10 minutes anymore. You think you're just lazy but your brain has been weaponised against you. For thousands of years dopamine was a rare biological reward for survival and hard work. But today brilliant engineers have hijacked that exact chemical pathway using infinite digital scrolling. Every time you swipe your screen your brain gets a massive unnatural spike of dopamine. You are essentially pulling a digital slot machine lever every time you feel slightly bored. This constant chemical flooding completely burns out your dopamine receptors, making normal life feel agonisingly dull. Boredom used to be a natural biological trigger for human creativity and problem solving. Now boredom feels like a panic attack because your brain is going through literal chemical withdrawal. To get your focus back you need to starve the algorithms and sit in literal silence. Reclaim your boredom. Put your screen down, and watch your mind slowly come back to life.</p>
   </div>
-
   <div class="content-box">
     <div class="subtitle">Cognitive Closure</div>
     <p class="body-text">You may think you’re making decisions based on logic, but sometimes your brain is simply desperate to escape uncertainty. This is called the need for cognitive closure—the desire for a clear answer, even when the evidence is incomplete. When something feels confusing or unpredictable, your mind tries to “seize” on the first explanation it finds and then “freeze” around it, resisting information that challenges it. That is why one headline can become your entire opinion, a first impression can feel like fact, or a guess can quietly turn into certainty. Closure feels comforting because “I know exactly what happened” is easier than “I’m not sure yet,” but emotional relief is not the same as truth. The danger begins when you prefer a wrong answer now over a more accurate answer later, becoming rigid, dismissive, or unwilling to reconsider. Practise leaving some questions open, look for evidence that disagrees with you, and remember: confidence can be a feeling, not proof.</p>
   </div>
-
   <div class="content-box">
     <div class="subtitle">Comprehension Issue.</div>
     <p class="body-text">Bees don’t waste their time explaining why honey is better than shit. Because they are not confused. They just want different things. I used to burn so much energy trying to convince people. Trying to make people understand why I was doing what I was doing. Building the perfect argument for why my path made sense. And they’d nod. And say something that proved they haven’t moved an inch. Because I was trying to solve a comprehension problem that was actually a values problem. They understood me fine. They just didn’t want what I wanted. No amount of explaining can change what someone wants. That’s the hard thing to accept. But some people are never going to see it. Not because they are stupid. But because they are built for different things than you are. So stop pitching. Go around people that already like honey. You will get more done in a month than you would in 3 years of arguing.</p>
   </div>
-
   <footer>&copy; conicey</footer>
 </div>
 </body>
