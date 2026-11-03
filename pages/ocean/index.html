@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conicey • Title Here</title>
+<title>Conicey • Ocean</title>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -94,7 +94,9 @@ body::after {
   border: 1px solid var(--line-soft);
   border-left: 2px solid var(--line-strong);
   padding: 28px 30px;
+  margin-bottom: 24px;
 }
+.content-box:last-of-type { margin-bottom: 0; }
 .content-box .subtitle {
   font-size: 13px;
   letter-spacing: 1.5px;
@@ -127,15 +129,22 @@ footer a:hover { color: var(--ink); }
 <body>
 <div class="shell">
   <nav class="crumb">
-    <a href="/">conicey</a><span class="sep">/</span><span class="here">title here</span>
+    <a href="/">conicey</a><span class="sep">/</span><span class="here">ocean</span>
   </nav>
   <div class="page-head">
-    <h1 class="page-title">Title Here</h1>
+    <h1 class="page-title">Ocean</h1>
   </div>
+
   <div class="content-box">
-    <div class="subtitle">subtitle</div>
-    <p class="body-text">text</p>
+    <div class="subtitle">Sea Shepherd</div>
+    <p class="body-text">Sea Shepherd is a marine-conservation organization that uses direct-action patrols, documentation, and partnerships with governments and law-enforcement agencies to confront illegal, unreported, and unregulated (IUU) fishing. Its campaigns target practices such as shark finning—cutting fins from sharks and often discarding the bodies at sea—illegal shark fishing, dolphin bycatch and harm, and unlawful longline or net fishing that can entangle whales, turtles, dolphins, and other protected wildlife. Sea Shepherd has worked with countries including Gabon, Liberia, Tanzania, and São Tomé and Príncipe to board and inspect vessels, gather evidence, and support arrests of boats involved in finning, illegal nets, and other destructive fishing; it also runs specific campaigns to defend sharks and dolphins.</p>
   </div>
+
+  <div class="content-box">
+    <div class="subtitle">Great Pacific Garbage Patch</div>
+    <p class="body-text">The Great Pacific Garbage Patch is not a solid “island” of trash, but a vast area of the North Pacific between Hawaii and California where currents trap floating plastic and other debris. It is estimated to cover about 1.6 million square kilometers—roughly twice the size of Texas—and contain around 1.8 trillion plastic pieces, with microplastics making up most pieces by count while larger items make up most of the mass. Cleaning it is extraordinarily difficult because the debris is spread across a huge, moving ocean area rather than gathered in one place, and plastic continues entering the ocean faster than cleanup systems can remove it; studies also show plastic fragments in the patch increasing sharply over time. This is why prevention—reducing plastic use, improving waste management, and stopping pollution at its source—is considered just as important as ocean cleanup.</p>
+  </div>
+
   <footer>&copy; conicey</footer>
 </div>
 </body>
